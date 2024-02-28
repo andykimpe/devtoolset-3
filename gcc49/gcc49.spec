@@ -10,7 +10,7 @@
 Summary: Various compilers (C, C++, Objective-C, Java, ada, go, obj-c++ ...)
 Name: gcc49
 Version: 4.9.3
-Release: 2
+Release: 3
 
 License: GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions and LGPLv2+ and BSD
 Group: Development/Languages
@@ -28,7 +28,8 @@ Patch1:  https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/target.path
 # https://gcc.gnu.org/viewcvs/gcc?view=revision&revision=227040
 Patch2: https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/local_atomic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: binutils >= 2.24
+#BuildRequires: binutils >= 2.24
+BuildRequires: binutils
 BuildRequires: make autoconf m4 gettext dejagnu bison flex sharutils
 BuildRequires: texinfo texinfo-tex
 BuildRequires: python-sphinx
