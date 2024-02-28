@@ -17,7 +17,7 @@
 %endif
 
 Summary: A GNU collection of binary utilities
-Name: %{?scl_prefix}%{?cross}binutils%{?_with_debug:-debug}
+Name: devtoolset-3-binutils
 Version: 2.24
 Release: 18%{?dist}
 License: GPLv3+
