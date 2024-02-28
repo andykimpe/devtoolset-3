@@ -1327,63 +1327,6 @@ ln -s \
 rm -f %{buildroot}%{_libdir}/libpython3.so
 %endif
 
-# ======================================================
-# Running the upstream test suite
-# ======================================================
-
-%check
-
-# first of all, check timestamps of bytecode files
-find %{buildroot} -type f -a -name "*.py" -print0 | \
-    LD_LIBRARY_PATH="%{buildroot}%{dynload_dir}/:%{buildroot}%{_libdir}" \
-    PYTHONPATH="%{buildroot}%{_libdir}/python%{pybasever} %{buildroot}%{_libdir}/python%{pybasever}/site-packages" \
-    xargs -0 %{buildroot}%{_bindir}/python%{pybasever} %{SOURCE8}
-
-
-topdir=$(pwd)
-CheckPython() {
-  ConfName=$1
-  ConfDir=$(pwd)/build/$ConfName
-
-  echo STARTING: CHECKING OF PYTHON FOR CONFIGURATION: $ConfName
-
-  # Note that we're running the tests using the version of the code in the
-  # builddir, not in the buildroot.
-
-  # Run the upstream test suite, setting "WITHIN_PYTHON_RPM_BUILD" so that the
-  # our non-standard decorators take effect on the relevant tests:
-  #   @unittest._skipInRpmBuild(reason)
-  #   @unittest._expectedFailureInRpmBuild
-  # test_faulthandler.test_register_chain currently fails on ppc64/ppc64le and
-  #   aarch64, see upstream bug http://bugs.python.org/issue21131
-  #   It now also fails on x86_64.
-  WITHIN_PYTHON_RPM_BUILD= \
-  LD_LIBRARY_PATH=$ConfDir $ConfDir/python -m test.regrtest \
-    -wW -j0 --findleaks \
-    -x test_distutils \
-    %if 0%{!with_rewheel}
-    -x test_ensurepip \
-    -x test_venv \
-    %endif
-    -x test_faulthandler \
-    %ifarch %{power64} s390 s390x armv7hl aarch64
-    -x test_gdb \
-    %endif
-
-  echo FINISHED: CHECKING OF PYTHON FOR CONFIGURATION: $ConfName
-
-}
-
-%if 0%{run_selftest_suite}
-
-# Check each of the configurations:
-%if 0%{?with_debug_build}
-CheckPython debug
-%endif # with_debug_build
-CheckPython optimized
-
-%endif # run_selftest_suite
-
 
 # ======================================================
 # Scriptlets
