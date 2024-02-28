@@ -40,7 +40,7 @@ BuildRequires: glibc-devel
 BuildRequires: dejagnu
 
 # go
-BuildRequires: hostname, procps
+BuildRequires: /usr/bin/hostname, procps
 
 # java
 # BuildRequires: which
