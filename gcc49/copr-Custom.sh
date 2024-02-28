@@ -12,7 +12,11 @@
 # https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/23/Everything/i386/os/
 # https://archives.fedoraproject.org/pub/archive/fedora/linux/updates/23/i386/
 # https://download.copr.fedorainfracloud.org/results/yourusername/projectname/custom-1-i386/
-# Build dependencies: scl-utils-build wget
+# Build dependencies: wget
+# #! /bin/sh -x
+# wget https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/copr-Custom.sh -O copr-Custom.sh
+# bash copr-Custom.sh
+# rm -f copr-Custom.sh
 wget https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/gcc49.spec -O gcc49.spec
 wget https://gcc.gnu.org/pub/gcc/releases/gcc-4.9.3/gcc-4.9.3.tar.bz2 -O gcc-4.9.3.tar.bz2
 wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.12.2.tar.bz2 -O isl-0.12.2.tar.bz2
