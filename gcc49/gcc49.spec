@@ -22,11 +22,11 @@ Source3: https://gcc.gnu.org/pub/gcc/infrastructure/mpfr-3.1.4.tar.bz2
 Source4: https://gcc.gnu.org/pub/gcc/infrastructure/gmp-6.1.0.tar.bz2
 Source5: https://gcc.gnu.org/pub/gcc/infrastructure/mpc-1.0.3.tar.gz
 Source6: https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/gcc49
-Patch:  https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/target.path
+Patch1:  https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/target.path
 
 # Patch1 for libitm: Don't redefine __always_inline in local_atomic.
 # https://gcc.gnu.org/viewcvs/gcc?view=revision&revision=227040
-Patch1: https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/local_atomic.patch
+Patch2: https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/local_atomic.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: binutils >= 2.24
 BuildRequires: make autoconf m4 gettext dejagnu bison flex sharutils
@@ -65,8 +65,8 @@ You can change the environment variables as follows adding
 
 %prep
 %setup -n gcc-4.9.3
-%patch -p0
 %patch1 -p0
+%patch2 -p0
 
 tar jxvf %{SOURCE1} -C %{_builddir}/gcc-%{version}/
 tar zxvf %{SOURCE2} -C %{_builddir}/gcc-%{version}/
