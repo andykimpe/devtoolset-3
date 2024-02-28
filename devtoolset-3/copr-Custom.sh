@@ -10,4 +10,6 @@
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
 wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3/devtoolset-3.spec -O devtoolset-3.spec
-
+wget  https://github.com/sclorg/rhscl-dockerfiles/archive/e90f5f98179410b7262098e4a016aa26dba598af/rhscl-dockerfiles-e90f5f9.tar.gz -O rhscl-dockerfiles-e90f5f9.tar.gz
+# backup
+# wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3/rhscl-dockerfiles-e90f5f98179410b7262098e4a016aa26dba598af.tar.gz -O rhscl-dockerfiles-e90f5f98179410b7262098e4a016aa26dba598af.tar.gz
