@@ -7,7 +7,7 @@
 Summary: Package that installs %scl
 Name: %scl_name
 Version: 3.1
-Release: 12%{?dist}
+Release: 14%{?dist}
 License: GPLv2+
 Group: Applications/File
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -45,10 +45,10 @@ Requires: scl-utils-build >= 20120927-11
 Obsoletes: %{name}-build < %{version}-%{release}
 # Java stuff has build-time requirements on these SCLs,
 # which are only available for x86_64 arch
-%ifarch x86_64
-Requires: rh-java-common-scldevel >= 1.1-12
-Requires: maven30-scldevel >= 1.1-7
-%endif
+#%ifarch x86_64
+#Requires: rh-java-common-scldevel >= 1.1-12
+#Requires: maven30-scldevel >= 1.1-7
+#%endif
 
 %description build
 Package shipping essential configuration macros to build %scl Software Collection.
