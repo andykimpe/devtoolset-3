@@ -1,7 +1,7 @@
 #! /bin/sh -x
 #use for build on
 # copr.fedorainfracloud.org
-# Mock chroot: fedora-39-x86_64
+# Mock chroot: epel-6-x86_64
 # External repositories for build dependencies
 # https://download.copr.fedorainfracloud.org/results/andykimpe/devtoolset-3/epel-6-x86_64/
 # Build dependencies: scl-utils-build wget
