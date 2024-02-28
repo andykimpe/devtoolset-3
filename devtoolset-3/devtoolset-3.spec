@@ -12,6 +12,8 @@ License: GPLv2+
 Group: Applications/File
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Source0: https://github.com/sclorg/rhscl-dockerfiles/archive/%{dfcommit}/rhscl-dockerfiles-%{dfshortcommit}.tar.gz
+#backup
+#Source0: https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3/rhscl-dockerfiles-e90f5f98179410b7262098e4a016aa26dba598af.tar.gz
 
 # The base package must require everything in the collection
 Requires: %{scl_prefix}toolchain %{scl_prefix}ide %{scl_prefix}perftools
