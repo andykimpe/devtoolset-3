@@ -21,7 +21,7 @@ Source2: http://www.bastoul.net/cloog/pages/download/cloog-0.18.4.tar.gz
 Source3: https://gcc.gnu.org/pub/gcc/infrastructure/mpfr-3.1.4.tar.bz2
 Source4: https://gcc.gnu.org/pub/gcc/infrastructure/gmp-6.1.0.tar.bz2
 Source5: https://gcc.gnu.org/pub/gcc/infrastructure/mpc-1.0.3.tar.gz
-Source6: gcc49
+Source6: https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/gcc49
 Patch:  target.path
 
 # Patch1 for libitm: Don't redefine __always_inline in local_atomic.
