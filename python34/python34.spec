@@ -489,7 +489,7 @@ Patch188: 00188-fix-lib2to3-tests-when-hashlib-doesnt-compile-properly.patch
 # ones
 # https://github.com/bkabrda/rewheel
 #%if 0%{with_rewheel}
-Patch189: 00189-add-rewheel-module.patch
+#Patch189: 00189-add-rewheel-module.patch
 #%endif
 
 # Tests requiring SIGHUP to work don't work in Koji
