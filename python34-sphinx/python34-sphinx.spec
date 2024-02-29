@@ -308,8 +308,10 @@ do
 done
 
 %build
-%py3_build
-#%if 0%{?python3_other_pkgversion}
+CFLAGS="${CFLAGS:-${RPM_OPT_FLAGS}}" LDFLAGS="${LDFLAGS:-${RPM_LD_FLAGS}}"\
+/usr/bin/python3.4 setup.py  build --executable="/usr/bin/python3.4 -sP"
+###%#py3_build
+###%#if 0%{?python3_other_pkgversion}
 #%py3_other_build
 #%endif
 
