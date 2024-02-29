@@ -1021,8 +1021,9 @@ InstallPython() {
 #%if 0%{?main_python3}
 #make install \
 #%else
-make altinstall \
+#make altinstall \
 #%endif
+make altinstall \
   DESTDIR=%{buildroot} INSTALL="install -p" EXTRA_CFLAGS="$MoreCFlags"
 
   popd
