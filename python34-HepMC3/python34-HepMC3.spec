@@ -3,7 +3,7 @@
 
 Name:		python%{python3_pkgversion}-HepMC3
 Version:	3.2.7
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	C++ Event Record for Monte Carlo Generators
 
 #		HepMC3 itself is LGPLv3+
