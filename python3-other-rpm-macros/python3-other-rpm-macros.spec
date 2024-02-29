@@ -1,7 +1,7 @@
 
 Name:           python3-other-rpm-macros
 Version:        3
-Release:        26%{?dist}
+Release:        27%{?dist}
 Summary:        The EPEL Python RPM macros
 
 License:        MIT
@@ -26,12 +26,12 @@ Python 3 stack in EPEL.
 %build
 
 %install
-mkdir -p %{buildroot}/%{rpmmacrodir}
-install -m 644 %{SOURCE4} %{buildroot}/%{rpmmacrodir}/
+mkdir -p %{buildroot}/usr/lib/rpm/macros.d
+install -m 644 %{SOURCE4} %{buildroot}/usr/lib/rpm/macros.d
 
 
 %files -n python3-other-rpm-macros
-%{rpmmacrodir}/macros.python3_other
+/usr/lib/rpm/macros.d/macros.python3_other
 
 
 %changelog
