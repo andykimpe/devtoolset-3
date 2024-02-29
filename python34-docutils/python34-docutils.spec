@@ -136,12 +136,36 @@ mv docs/user/rst/images/biohazard.swf ./biohazard.swf
 
 
 %files -n python34-%{srcname}
+ /usr/bin/rst2html-3
+/usr/bin/rst2html-3.4
+/usr/bin/rst2html4-3
+/usr/bin/rst2html4-3.4
+/usr/bin/rst2html5-3
+/usr/bin/rst2html5-3.4
+/usr/bin/rst2latex-3
+/usr/bin/rst2latex-3.4
+/usr/bin/rst2man-3
+/usr/bin/rst2man-3.4
+/usr/bin/rst2odt-3
+/usr/bin/rst2odt-3.4
+/usr/bin/rst2odt_prepstyles-3
+/usr/bin/rst2odt_prepstyles-3.4
+/usr/bin/rst2pseudoxml-3
+/usr/bin/rst2pseudoxml-3.4
+/usr/bin/rst2s5-3
+/usr/bin/rst2s5-3.4
+/usr/bin/rst2xetex-3
+/usr/bin/rst2xetex-3.4
+/usr/bin/rst2xml-3
+/usr/bin/rst2xml-3.4
+/usr/bin/rstpep2html-3
+/usr/bin/rstpep2html-3.4
 #%license COPYING.txt licenses
 #%doc BUGS.txt FAQ.txt HISTORY.txt README.txt RELEASE-NOTES.txt 
 #%doc THANKS.txt tools/editors
 #%{_bindir}/*-3.4
 #%{_bindir}/*-3
-#/usr/lib/python3.4/site-packages/*
+/usr/lib/python3.4/site-packages/*
 
 #%if 0%{?python3_other_pkgversion}
 #%files -n python%{python3_other_pkgversion}-%{srcname}
@@ -153,7 +177,7 @@ mv docs/user/rst/images/biohazard.swf ./biohazard.swf
 #%endif # python3_other_pkgversion
 
 %files doc
-#%license COPYING.txt licenses
+%license COPYING.txt licenses
 #%doc docs/*
 
 %changelog
