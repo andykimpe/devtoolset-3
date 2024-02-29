@@ -23,9 +23,9 @@
 
 # is this the EPEL 7 main Python 3?
 #%if "%python3_pkgversion" == "%pyshortver"
-#%global main_python3 1
+%global main_python3 1
 #%else
-%global main_python3 0
+#%global main_python3 0
 #%endif
 
 
@@ -72,7 +72,7 @@
 %global py_INSTSONAME_optimized libpython%{LDVERSION_optimized}.so.%{py_SOVERSION}
 %global py_INSTSONAME_debug     libpython%{LDVERSION_debug}.so.%{py_SOVERSION}
 
-%global with_debug_build 0
+%global with_debug_build 1
 
 %global with_gdb_hooks 1
 
@@ -153,7 +153,7 @@
 Summary: Version 3 of the Python programming language aka Python 3000
 Name: python%{pyshortver}
 Version: %{pybasever}.10
-Release: 12%{?dist}
+Release: 13%{?dist}
 License: Python
 
 
@@ -214,17 +214,17 @@ BuildRequires: valgrind-devel
 BuildRequires: xz-devel
 BuildRequires: zlib-devel
 
-#%if 0%{?with_rewheel}
-#BuildRequires: python%{pyshortver}-setuptools
-#BuildRequires: python%{pyshortver}-pip
-#%endif
+%if 0%{?with_rewheel}
+BuildRequires: python%{pyshortver}-setuptools
+BuildRequires: python%{pyshortver}-pip
+%endif
 
 
 # =======================
 # Source code and patches
 # =======================
 
-Source: https://www.python.org/ftp/python/%{version}/Python-%{version}.tar.xz
+Source: http://www.python.org/ftp/python/%{version}/Python-%{version}.tar.xz
 
 # Avoid having various bogus auto-generated Provides lines for the various
 # python c modules' SONAMEs:
@@ -488,9 +488,9 @@ Patch188: 00188-fix-lib2to3-tests-when-hashlib-doesnt-compile-properly.patch
 # Add the rewheel module, allowing to recreate wheels from already installed
 # ones
 # https://github.com/bkabrda/rewheel
-#%if 0%{with_rewheel}
-#Patch189: 00189-add-rewheel-module.patch
-#%endif
+%if 0%{with_rewheel}
+Patch189: 00189-add-rewheel-module.patch
+%endif
 
 # Tests requiring SIGHUP to work don't work in Koji
 # see rhbz#1088233
@@ -593,19 +593,19 @@ Patch5000: 05000-autotool-intermediates.patch
 URL: http://www.python.org/
 
 # See notes in bug 532118:
-#Provides: python(abi) = %{pybasever}
+Provides: python(abi) = %{pybasever}
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
-#%if 0%{with_rewheel}
-#Requires: python%{pyshortver}-setuptools
-#Requires: python%{pyshortver}-pip
-#%else
+%if 0%{with_rewheel}
+Requires: python%{pyshortver}-setuptools
+Requires: python%{pyshortver}-pip
+%else
 # When rewheel is disabled we keep the bundled setuptools and pip
 # so that virtualenvs work properly
-#Provides: bundled(python%{pyshortver}-pip) = 9.0.1
-#Provides: bundled(python%{pyshortver}-setuptools) = 28.8.0
-#%endif
+Provides: bundled(python%{pyshortver}-pip) = 9.0.1
+Provides: bundled(python%{pyshortver}-setuptools) = 28.8.0
+%endif
 
 # The IUS repository previously maintained a python34u package.  Python 3.4 is
 # EOL upstream, meaning IUS pacakges will be retired soon.  As a coordinated
@@ -652,12 +652,12 @@ Summary: Libraries and header files needed for Python 3 development
 Requires: %{name} = %{version}-%{release}
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 Requires: python-rpm-macros
-#%if 0%{?main_python3}
-#Requires: python3-rpm-macros
-#%else
-#Requires: python3-other-rpm-macros
-#%endif
-#Conflicts: %{name} < %{version}-%{release}
+%if 0%{?main_python3}
+Requires: python3-rpm-macros
+%else
+Requires: python3-other-rpm-macros
+%endif
+Conflicts: %{name} < %{version}-%{release}
 
 # Obsolete IUS package
 Provides: python34u-devel = %{version}-%{release}
@@ -793,10 +793,10 @@ for f in md5module.c sha1module.c sha256module.c sha512module.c; do
 done
 
 # Since we unbundle pip, our version is different from upstream
-#%if 0%{with_rewheel}
-#%global pip_version 9.0.1
-#sed -r -i s/'_PIP_VERSION = "[0-9.]+"'/'_PIP_VERSION = "%{pip_version}"'/ Lib/ensurepip/__init__.py
-#%endif
+%if 0%{with_rewheel}
+%global pip_version 9.0.1
+sed -r -i s/'_PIP_VERSION = "[0-9.]+"'/'_PIP_VERSION = "%{pip_version}"'/ Lib/ensurepip/__init__.py
+%endif
 
 #
 # Apply patches:
@@ -853,9 +853,9 @@ done
 %patch186 -p1
 %patch188 -p1
 
-#%if 0%{with_rewheel}
-#%patch189 -p1
-#%endif
+%if 0%{with_rewheel}
+%patch189 -p1
+%endif
 
 %patch194 -p1
 %patch196 -p1
@@ -1018,12 +1018,11 @@ InstallPython() {
 
   pushd $ConfDir
 
-#%if 0%{?main_python3}
-#make install \
-#%else
-#make altinstall \
-#%endif
+%if 0%{?main_python3}
+make install \
+%else
 make altinstall \
+%endif
   DESTDIR=%{buildroot} INSTALL="install -p" EXTRA_CFLAGS="$MoreCFlags"
 
   popd
@@ -1070,13 +1069,13 @@ InstallPython debug \
   %{py_INSTSONAME_debug} \
   -O0
 
-#%if ! 0%{?main_python3}
-## altinstall only creates pkgconfig/python-3.4.pc, not the version with ABIFAGS,
-##  so we need to move the debug .pc file to not overwrite it by optimized install
-#mv \
-#  %{buildroot}%{_libdir}/pkgconfig/python-%{pybasever}.pc \
-#  %{buildroot}%{_libdir}/pkgconfig/python-%{LDVERSION_debug}.pc
-#%endif
+%if ! 0%{?main_python3}
+# altinstall only creates pkgconfig/python-3.4.pc, not the version with ABIFAGS,
+#  so we need to move the debug .pc file to not overwrite it by optimized install
+mv \
+  %{buildroot}%{_libdir}/pkgconfig/python-%{pybasever}.pc \
+  %{buildroot}%{_libdir}/pkgconfig/python-%{LDVERSION_debug}.pc
+%endif
 
 %endif # with_debug_build
 
@@ -1086,10 +1085,10 @@ InstallPython optimized \
 
 install -d -m 0755 ${RPM_BUILD_ROOT}%{pylibdir}/site-packages/__pycache__
 
-#%if 0%{main_python3}
-##TODO: use 2to3-3 in Fedora as well instead of python3-2to3
-#mv ${RPM_BUILD_ROOT}%{_bindir}/2to3 ${RPM_BUILD_ROOT}%{_bindir}/2to3-3
-#%endif
+%if 0%{main_python3}
+#TODO: use 2to3-3 in Fedora as well instead of python3-2to3
+mv ${RPM_BUILD_ROOT}%{_bindir}/2to3 ${RPM_BUILD_ROOT}%{_bindir}/2to3-3
+%endif
 
 # Development tools
 install -m755 -d ${RPM_BUILD_ROOT}%{pylibdir}/Tools
@@ -1262,11 +1261,11 @@ ln -s \
   %{_bindir}/python%{LDVERSION_debug} \
   %{buildroot}%{_bindir}/python%{pybasever}-debug
 
-#%if 0%{main_python3}
-#ln -s \
-#  %{_bindir}/python%{pybasever}-debug \
-#  %{buildroot}%{_bindir}/python3-debug
-#%endif
+%if 0%{main_python3}
+ln -s \
+  %{_bindir}/python%{pybasever}-debug \
+  %{buildroot}%{_bindir}/python3-debug
+%endif
 %endif
 
 #
@@ -1310,46 +1309,100 @@ echo '[ $? -eq 127 ] && echo "Could not find python%{LDVERSION_optimized}-`uname
   %{buildroot}%{_bindir}/python%{LDVERSION_optimized}-config
   chmod +x %{buildroot}%{_bindir}/python%{LDVERSION_optimized}-config
 
-#%if ! 0%{?main_python3}
-## make altinstall doesn't create python3.X-config, but we want it
-##  (we don't want to have just python3.Xm-config, that's a bit confusing)
+%if ! 0%{?main_python3}
+# make altinstall doesn't create python3.X-config, but we want it
+#  (we don't want to have just python3.Xm-config, that's a bit confusing)
 ln -s \
   %{_bindir}/python%{LDVERSION_optimized}-config \
   %{buildroot}%{_bindir}/python%{pybasever}-config
-## make altinstall doesn't create python-3.4m.pc, only python-3.4.pc, but we want both
+# make altinstall doesn't create python-3.4m.pc, only python-3.4.pc, but we want both
 ln -s \
   %{_libdir}/pkgconfig/python-%{pybasever}.pc \
   %{buildroot}%{_libdir}/pkgconfig/python-%{LDVERSION_optimized}.pc
-#%endif
-#
-## remove libpython3.so in EPEL non-main python to not cause collision
-## between python3X and python3X+1 stacks...
-#%if ! 0%{?main_python3}
+%endif
+
+# remove libpython3.so in EPEL non-main python to not cause collision
+# between python3X and python3X+1 stacks...
+%if ! 0%{?main_python3}
 rm -f %{buildroot}%{_libdir}/libpython3.so
-#%endif
+%endif
+
+# ======================================================
+# Running the upstream test suite
+# ======================================================
+
+%check
+
+# first of all, check timestamps of bytecode files
+find %{buildroot} -type f -a -name "*.py" -print0 | \
+    LD_LIBRARY_PATH="%{buildroot}%{dynload_dir}/:%{buildroot}%{_libdir}" \
+    PYTHONPATH="%{buildroot}%{_libdir}/python%{pybasever} %{buildroot}%{_libdir}/python%{pybasever}/site-packages" \
+    xargs -0 %{buildroot}%{_bindir}/python%{pybasever} %{SOURCE8}
+
+
+topdir=$(pwd)
+CheckPython() {
+  ConfName=$1
+  ConfDir=$(pwd)/build/$ConfName
+
+  echo STARTING: CHECKING OF PYTHON FOR CONFIGURATION: $ConfName
+
+  # Note that we're running the tests using the version of the code in the
+  # builddir, not in the buildroot.
+
+  # Run the upstream test suite, setting "WITHIN_PYTHON_RPM_BUILD" so that the
+  # our non-standard decorators take effect on the relevant tests:
+  #   @unittest._skipInRpmBuild(reason)
+  #   @unittest._expectedFailureInRpmBuild
+  # test_faulthandler.test_register_chain currently fails on ppc64/ppc64le and
+  #   aarch64, see upstream bug http://bugs.python.org/issue21131
+  #   It now also fails on x86_64.
+  WITHIN_PYTHON_RPM_BUILD= \
+  LD_LIBRARY_PATH=$ConfDir $ConfDir/python -m test.regrtest \
+    -wW -j0 --findleaks \
+    -x test_distutils \
+    %if 0%{!with_rewheel}
+    -x test_ensurepip \
+    -x test_venv \
+    %endif
+    -x test_faulthandler \
+    %ifarch %{power64} s390 s390x armv7hl aarch64
+    -x test_gdb \
+    %endif
+
+  echo FINISHED: CHECKING OF PYTHON FOR CONFIGURATION: $ConfName
+
+}
+
+%if 0%{run_selftest_suite}
+
+# Check each of the configurations:
+%if 0%{?with_debug_build}
+CheckPython debug
+%endif # with_debug_build
+CheckPython optimized
+
+%endif # run_selftest_suite
 
 
 # ======================================================
 # Scriptlets
 # ======================================================
 
-%post -p /sbin/ldconfig libs
-%postun -p /sbin/ldconfig libs
-
-#####%#ldconfig_scriptlets libs
+%ldconfig_scriptlets libs
 
 
 %files
 %doc LICENSE README
 %{_bindir}/pydoc*
-#%if 0%{?main_python3}
-#%{_bindir}/python3
-#%endif
+%if 0%{?main_python3}
+%{_bindir}/python3
+%endif
 %{_bindir}/python%{pybasever}
 %{_bindir}/python%{pybasever}m
-#%if 0%{?main_python3}
-#%{_bindir}/pyvenv
-#%endif
+%if 0%{?main_python3}
+%{_bindir}/pyvenv
+%endif
 %{_bindir}/pyvenv-%{pybasever}
 %{_mandir}/*/*
 
@@ -1475,18 +1528,18 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %dir %{pylibdir}/ensurepip/__pycache__/
 %{pylibdir}/ensurepip/*.py
 %{pylibdir}/ensurepip/__pycache__/*%{bytecode_suffixes}
-#%if 0%{?with_rewheel}
-#%exclude %{pylibdir}/ensurepip/_bundled
-#%else
+%if 0%{?with_rewheel}
+%exclude %{pylibdir}/ensurepip/_bundled
+%else
 %{pylibdir}/ensurepip/_bundled
-#%endif
+%endif
 
-#%if 0%{?with_rewheel}
-#%dir %{pylibdir}/ensurepip/rewheel/
-#%dir %{pylibdir}/ensurepip/rewheel/__pycache__/
-#%{pylibdir}/ensurepip/rewheel/*.py
-#%{pylibdir}/ensurepip/rewheel/__pycache__/*%{bytecode_suffixes}
-#%endif
+%if 0%{?with_rewheel}
+%dir %{pylibdir}/ensurepip/rewheel/
+%dir %{pylibdir}/ensurepip/rewheel/__pycache__/
+%{pylibdir}/ensurepip/rewheel/*.py
+%{pylibdir}/ensurepip/rewheel/__pycache__/*%{bytecode_suffixes}
+%endif
 
 %{pylibdir}/html
 %{pylibdir}/http
@@ -1559,9 +1612,9 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 
 %{_libdir}/%{py_INSTSONAME_optimized}
 # removed in EPEL, see explanation in install section
-#%if 0%{?main_python3}
-#%{_libdir}/libpython3.so
-#%endif
+%if 0%{?main_python3}
+%{_libdir}/libpython3.so
+%endif
 %if 0%{?with_systemtap}
 %dir %(dirname %{tapsetdir})
 %dir %{tapsetdir}
@@ -1575,23 +1628,23 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %{_includedir}/python%{LDVERSION_optimized}/*.h
 %exclude %{_includedir}/python%{LDVERSION_optimized}/%{_pyconfig_h}
 %doc Misc/README.valgrind Misc/valgrind-python.supp Misc/gdbinit
-#%if 0%{?main_python3}
-#%{_bindir}/python3-config
-#%endif
+%if 0%{?main_python3}
+%{_bindir}/python3-config
+%endif
 %{_bindir}/python%{pybasever}-config
 %{_bindir}/python%{LDVERSION_optimized}-config
 %{_bindir}/python%{LDVERSION_optimized}-*-config
 %{_libdir}/libpython%{LDVERSION_optimized}.so
 %{_libdir}/pkgconfig/python-%{LDVERSION_optimized}.pc
 %{_libdir}/pkgconfig/python-%{pybasever}.pc
-#%if 0%{?main_python3}
-#%{_libdir}/pkgconfig/python3.pc
-#%endif
+%if 0%{?main_python3}
+%{_libdir}/pkgconfig/python3.pc
+%endif
 
 %files tools
-#%if 0%{?main_python3}
-#%{_bindir}/2to3-3
-#%endif
+%if 0%{?main_python3}
+%{_bindir}/2to3-3
+%endif
 %{_bindir}/2to3-%{pybasever}
 %{_bindir}/idle*
 %{pylibdir}/Tools
@@ -1634,9 +1687,9 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 
 # Analog of the core subpackage's files:
 %{_bindir}/python%{LDVERSION_debug}
-#%if 0%{?main_python3}
-#%{_bindir}/python3-debug
-#%endif
+%if 0%{?main_python3}
+%{_bindir}/python3-debug
+%endif
 %{_bindir}/python%{pybasever}-debug
 
 # Analog of the -libs subpackage's files:
