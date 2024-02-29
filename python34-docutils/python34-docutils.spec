@@ -100,8 +100,8 @@ mv tmp tools/editors/emacs/IDEAS.rst
 
 %install
   CFLAGS="${CFLAGS:-${RPM_OPT_FLAGS}}" LDFLAGS="${LDFLAGS:-${RPM_LD_FLAGS}}"\
-  /usr/bin/python3.4 setup.py  install -O1 --skip-build --root /home/andy/rpmbuild/BUILDROOT/%{NAME}-%{VERSION}-%{RELEASE}.x86_64 --prefix /usr 
-  rm -rfv /home/andy/rpmbuild/BUILDROOT/%{NAME}-%{VERSION}-%{RELEASE}.x86_64/usr/bin/__pycache__
+  /usr/bin/python3.4 setup.py  install -O1 --skip-build --root %{buildroot} --prefix /usr 
+  rm -rfv %{buildroot}/usr/bin/__pycache__
 ###%#py3_install
 
 # docutils setup.py runs 2to3 on a copy of the tests and puts it in sitelib.
