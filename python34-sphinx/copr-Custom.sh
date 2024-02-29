@@ -8,8 +8,8 @@
 # wget https://github.com/andykimpe/devtoolset-3/raw/master/python34-sphinx/copr-Custom.sh -O copr-Custom.sh
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
-wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/c/cmake3-3.17.5-1.el7.src.rpm
+wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/p/python3-sphinx-1.2.3-6.el7.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
-rm -rf python34-sphinx.spec python3-sphinx.spec python-sphinx.spec sphinx.spec
+rm -rf *.spec
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34-sphinx/python34-sphinx.spec
