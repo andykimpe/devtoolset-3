@@ -111,131 +111,131 @@ BuildArch:	noarch
 This package provides HepMC3 interfaces to some common Monte Carlo generators.
 
 %if %{?rhel}%{!?rhel:0} == 7
-%package -n python2-%{name}
+%package -n python2-HeppMC3
 Summary:	HeppMC3 Python 2 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python2-%{name}
+Provides:	python2-HeppMC3
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 
-%description -n python2-%{name}
+%description -n python2-HeppMC3
 This package provides the Python 2 bindings for HepMC3.
 
-%package -n python2-%{name}-search
+%package -n python2-HeppMC3-search
 Summary:	HepMC3 search module Python 2 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python2-%{name}-search
+Provides:	python2-HeppMC3-search
 Requires:	%{name}-search%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python2-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python2-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python2-%{name}-search
+%description -n python2-HeppMC3-search
 This package provides the Python 2 bindings for HepMC3 search module.
 
-%package -n python2-%{name}-rootIO
+%package -n python2-HeppMC3-rootIO
 Summary:	HepMC3 ROOT I/O module Python 2 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python2-%{name}-rootIO
+Provides:	python2-HeppMC3-rootIO
 Requires:	%{name}-rootIO%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python2-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python2-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python2-%{name}-rootIO
+%description -n python2-HeppMC3-rootIO
 This package provides the Python 2 bindings for HepMC3 ROOT I/O module.
 
-%package -n python2-%{name}-protobufIO
+%package -n python2-HeppMC3-protobufIO
 Summary:	HepMC3 protobuf I/O module Python 2 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python2-%{name}-protobufIO
+Provides:	python2-HeppMC3-protobufIO
 Requires:	%{name}-protobufIO%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python2-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python2-HeppMC3%{?_isa} = %{version}-%{release}
 
 %description -n python2-%{name}-protobufIO
 This package provides the Python 2 bindings for HepMC3 protobuf I/O module.
 
-%package -n python%{?python3_other_pkgversion}-%{name}
+%package -n python%{?python3_other_pkgversion}-HeppMC3
 Summary:	HepMC3 Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_other_pkgversion}-%{name}
+Provides:	python%{python3_other_pkgversion}-HeppMC3
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 
 %description -n python%{?python3_other_pkgversion}-%{name}
 This package provides the Python 3 bindings for HepMC3.
 
-%package -n python%{?python3_other_pkgversion}-%{name}-search
+%package -n python%{?python3_other_pkgversion}-HeppMC3-search
 Summary:	HepMC3 search module Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_other_pkgversion}-%{name}-search
+Provides:	python%{python3_other_pkgversion}-HeppMC3-search
 Requires:	%{name}-search%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python%{python3_other_pkgversion}-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python%{python3_other_pkgversion}-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python%{?python3_other_pkgversion}-%{name}-search
+%description -n python%{?python3_other_pkgversion}-HeppMC3-search
 This package provides the Python 3 bindings for HepMC3 search module.
 
-%package -n python%{?python3_other_pkgversion}-%{name}-rootIO
+%package -n python%{?python3_other_pkgversion}-HeppMC3-rootIO
 Summary:	HepMC3 ROOT I/O module Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_other_pkgversion}-%{name}-rootIO
+Provides:	python%{python3_other_pkgversion}-HeppMC3-rootIO
 Requires:	%{name}-rootIO%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python%{python3_other_pkgversion}-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python%{python3_other_pkgversion}-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python%{?python3_other_pkgversion}-%{name}-rootIO
+%description -n python%{?python3_other_pkgversion}-HeppMC3-rootIO
 This package provides the Python 3 bindings for HepMC3 ROOT I/O module.
 
-%package -n python%{?python3_other_pkgversion}-%{name}-protobufIO
+%package -n python%{?python3_other_pkgversion}-HeppMC3-protobufIO
 Summary:	HepMC3 protobuf I/O module Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_other_pkgversion}-%{name}-protobufIO
+Provides:	python%{python3_other_pkgversion}-HeppMC3-protobufIO
 Requires:	%{name}-protobufIO%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python%{python3_other_pkgversion}-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python%{python3_other_pkgversion}-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python%{?python3_other_pkgversion}-%{name}-protobufIO
+%description -n python%{?python3_other_pkgversion}-HeppMC3-protobufIO
 This package provides the Python 3 bindings for HepMC3 protobuf I/O module.
 %endif
 
-%package -n python%{python3_pkgversion}-%{name}
+%package -n python%{python3_pkgversion}-HeppMC3
 Summary:	HepMC3 Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_pkgversion}-%{name}
+Provides:	python%{python3_pkgversion}-HeppMC3
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 
-%description -n python%{python3_pkgversion}-%{name}
+%description -n python%{python3_pkgversion}-HeppMC3
 This package provides the Python 3 bindings for HepMC3.
 
-%package -n python%{python3_pkgversion}-%{name}-search
+%package -n python%{python3_pkgversion}-HeppMC3-search
 Summary:	HepMC3 search module Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_pkgversion}-%{name}-search
+Provides:	python%{python3_pkgversion}-HeppMC3-search
 Requires:	%{name}-search%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python%{python3_pkgversion}-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python%{python3_pkgversion}-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python%{python3_pkgversion}-%{name}-search
+%description -n python%{python3_pkgversion}-HeppMC3-search
 This package provides the Python 3 bindings for HepMC3 search module.
 
-%package -n python%{python3_pkgversion}-%{name}-rootIO
+%package -n python%{python3_pkgversion}-HeppMC3-rootIO
 Summary:	HepMC3 ROOT I/O module Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_pkgversion}-%{name}-rootIO
+Provides:	python%{python3_pkgversion}-HeppMC3-rootIO
 Requires:	%{name}-rootIO%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python%{python3_pkgversion}-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python%{python3_pkgversion}-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python%{python3_pkgversion}-%{name}-rootIO
+%description -n python%{python3_pkgversion}-HeppMC3-rootIO
 This package provides the Python 3 bindings for HepMC3 ROOT I/O module.
 
-%package -n python%{python3_pkgversion}-%{name}-protobufIO
+%package -n python%{python3_pkgversion}-HeppMC3-protobufIO
 Summary:	HepMC3 protobuf I/O module Python 3 bindings
 License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
-%py_provides	python%{python3_pkgversion}-%{name}-protobufIO
+Provides:	python%{python3_pkgversion}-HeppMC3-protobufIO
 Requires:	%{name}-protobufIO%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
-Requires:	python%{python3_pkgversion}-%{name}%{?_isa} = %{version}-%{release}
+Requires:	python%{python3_pkgversion}-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python%{python3_pkgversion}-%{name}-protobufIO
+%description -n python%{python3_pkgversion}-HeppMC3-protobufIO
 This package provides the Python 3 bindings for HepMC3 protobuf I/O module.
 
 %package doc
@@ -271,10 +271,7 @@ This package provides HepMC manuals and examples.
 %install
 %cmake3_install
 
-rm %{buildroot}%{_includedir}/%{name}/bxzstr/LICENSE
-
-%check
-%ctest3
+rm %{buildroot}%{_includedir}/HeppMC3/bxzstr/LICENSE
 
 %ldconfig_scriptlets
 %ldconfig_scriptlets search
@@ -289,87 +286,87 @@ rm %{buildroot}%{_includedir}/%{name}/bxzstr/LICENSE
 %files devel
 %{_bindir}/HepMC3-config
 %{_libdir}/libHepMC3.so
-%dir %{_includedir}/%{name}
-%dir %{_includedir}/%{name}/bxzstr
-%dir %{_includedir}/%{name}/Data
-%{_includedir}/%{name}/bxzstr/bxzstr.hpp
-%{_includedir}/%{name}/bxzstr/bz_stream_wrapper.hpp
-%{_includedir}/%{name}/bxzstr/compression_types.hpp
-%{_includedir}/%{name}/bxzstr/config.hpp
-%{_includedir}/%{name}/bxzstr/lzma_stream_wrapper.hpp
-%{_includedir}/%{name}/bxzstr/stream_wrapper.hpp
-%{_includedir}/%{name}/bxzstr/strict_fstream.hpp
-%{_includedir}/%{name}/bxzstr/zstd_stream_wrapper.hpp
-%{_includedir}/%{name}/bxzstr/z_stream_wrapper.hpp
-%{_includedir}/%{name}/AssociatedParticle.h
-%{_includedir}/%{name}/Attribute.h
-%{_includedir}/%{name}/CompressedIO.h
-%{_includedir}/%{name}/Data/GenEventData.h
-%{_includedir}/%{name}/Data/GenParticleData.h
-%{_includedir}/%{name}/Data/GenRunInfoData.h
-%{_includedir}/%{name}/Data/GenVertexData.h
-%{_includedir}/%{name}/Errors.h
-%{_includedir}/%{name}/FourVector.h
-%{_includedir}/%{name}/GenCrossSection.h
-%{_includedir}/%{name}/GenCrossSection_fwd.h
-%{_includedir}/%{name}/GenEvent.h
-%{_includedir}/%{name}/GenHeavyIon.h
-%{_includedir}/%{name}/GenHeavyIon_fwd.h
-%{_includedir}/%{name}/GenParticle.h
-%{_includedir}/%{name}/GenParticle_fwd.h
-%{_includedir}/%{name}/GenPdfInfo.h
-%{_includedir}/%{name}/GenPdfInfo_fwd.h
-%{_includedir}/%{name}/GenRunInfo.h
-%{_includedir}/%{name}/GenVertex.h
-%{_includedir}/%{name}/GenVertex_fwd.h
-%{_includedir}/%{name}/HEPEVT_Helpers.h
-%{_includedir}/%{name}/HEPEVT_Wrapper.h
-%{_includedir}/%{name}/HEPEVT_Wrapper_Runtime.h
-%{_includedir}/%{name}/HEPEVT_Wrapper_Runtime_Static.h
-%{_includedir}/%{name}/HEPEVT_Wrapper_Template.h
-%{_includedir}/%{name}/HepMC3.h
-%{_includedir}/%{name}/LHEF.h
-%{_includedir}/%{name}/LHEFAttributes.h
-%{_includedir}/%{name}/Print.h
-%{_includedir}/%{name}/PrintStreams.h
-%{_includedir}/%{name}/Reader.h
-%{_includedir}/%{name}/ReaderAscii.h
-%{_includedir}/%{name}/ReaderAsciiHepMC2.h
-%{_includedir}/%{name}/ReaderFactory.h
-%{_includedir}/%{name}/ReaderGZ.h
-%{_includedir}/%{name}/ReaderHEPEVT.h
-%{_includedir}/%{name}/ReaderLHEF.h
-%{_includedir}/%{name}/ReaderMT.h
-%{_includedir}/%{name}/ReaderPlugin.h
-%{_includedir}/%{name}/Setup.h
-%{_includedir}/%{name}/Units.h
-%{_includedir}/%{name}/Version.h
-%{_includedir}/%{name}/Writer.h
-%{_includedir}/%{name}/WriterAscii.h
-%{_includedir}/%{name}/WriterAsciiHepMC2.h
-%{_includedir}/%{name}/WriterHEPEVT.h
-%{_includedir}/%{name}/WriterGZ.h
-%{_includedir}/%{name}/WriterPlugin.h
-%dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/cmake
-%{_datadir}/%{name}/cmake/HepMC3Config.cmake
-%{_datadir}/%{name}/cmake/HepMC3Config-version.cmake
-%{_datadir}/%{name}/cmake/HepMC3Targets.cmake
-%{_datadir}/%{name}/cmake/HepMC3Targets-release.cmake
+%dir %{_includedir}/HeppMC3
+%dir %{_includedir}/HeppMC3/bxzstr
+%dir %{_includedir}/HeppMC3/Data
+%{_includedir}/HeppMC3/bxzstr/bxzstr.hpp
+%{_includedir}/HeppMC3/bxzstr/bz_stream_wrapper.hpp
+%{_includedir}/HeppMC3/bxzstr/compression_types.hpp
+%{_includedir}/HeppMC3/bxzstr/config.hpp
+%{_includedir}/HeppMC3/bxzstr/lzma_stream_wrapper.hpp
+%{_includedir}/HeppMC3/bxzstr/stream_wrapper.hpp
+%{_includedir}/HeppMC3/bxzstr/strict_fstream.hpp
+%{_includedir}/HeppMC3/bxzstr/zstd_stream_wrapper.hpp
+%{_includedir}/HeppMC3/bxzstr/z_stream_wrapper.hpp
+%{_includedir}/HeppMC3/AssociatedParticle.h
+%{_includedir}/HeppMC3/Attribute.h
+%{_includedir}/HeppMC3/CompressedIO.h
+%{_includedir}/HeppMC3/Data/GenEventData.h
+%{_includedir}/HeppMC3/Data/GenParticleData.h
+%{_includedir}/HeppMC3/Data/GenRunInfoData.h
+%{_includedir}/HeppMC3/Data/GenVertexData.h
+%{_includedir}/HeppMC3/Errors.h
+%{_includedir}/HeppMC3/FourVector.h
+%{_includedir}/HeppMC3/GenCrossSection.h
+%{_includedir}/HeppMC3/GenCrossSection_fwd.h
+%{_includedir}/HeppMC3/GenEvent.h
+%{_includedir}/HeppMC3/GenHeavyIon.h
+%{_includedir}/HeppMC3/GenHeavyIon_fwd.h
+%{_includedir}/HeppMC3/GenParticle.h
+%{_includedir}/HeppMC3/GenParticle_fwd.h
+%{_includedir}/HeppMC3/GenPdfInfo.h
+%{_includedir}/HeppMC3/GenPdfInfo_fwd.h
+%{_includedir}/HeppMC3/GenRunInfo.h
+%{_includedir}/HeppMC3/GenVertex.h
+%{_includedir}/HeppMC3/GenVertex_fwd.h
+%{_includedir}/HeppMC3/HEPEVT_Helpers.h
+%{_includedir}/HeppMC3/HEPEVT_Wrapper.h
+%{_includedir}/HeppMC3/HEPEVT_Wrapper_Runtime.h
+%{_includedir}/HeppMC3/HEPEVT_Wrapper_Runtime_Static.h
+%{_includedir}/HeppMC3/HEPEVT_Wrapper_Template.h
+%{_includedir}/HeppMC3/HepMC3.h
+%{_includedir}/HeppMC3/LHEF.h
+%{_includedir}/HeppMC3/LHEFAttributes.h
+%{_includedir}/HeppMC3/Print.h
+%{_includedir}/HeppMC3/PrintStreams.h
+%{_includedir}/HeppMC3/Reader.h
+%{_includedir}/HeppMC3/ReaderAscii.h
+%{_includedir}/HeppMC3/ReaderAsciiHepMC2.h
+%{_includedir}/HeppMC3/ReaderFactory.h
+%{_includedir}/HeppMC3/ReaderGZ.h
+%{_includedir}/HeppMC3/ReaderHEPEVT.h
+%{_includedir}/HeppMC3/ReaderLHEF.h
+%{_includedir}/HeppMC3/ReaderMT.h
+%{_includedir}/HeppMC3/ReaderPlugin.h
+%{_includedir}/HeppMC3/Setup.h
+%{_includedir}/HeppMC3/Units.h
+%{_includedir}/HeppMC3/Version.h
+%{_includedir}/HeppMC3/Writer.h
+%{_includedir}/HeppMC3/WriterAscii.h
+%{_includedir}/HeppMC3/WriterAsciiHepMC2.h
+%{_includedir}/HeppMC3/WriterHEPEVT.h
+%{_includedir}/HeppMC3/WriterGZ.h
+%{_includedir}/HeppMC3/WriterPlugin.h
+%dir %{_datadir}/HeppMC3
+%dir %{_datadir}/HeppMC3/cmake
+%{_datadir}/HeppMC3/cmake/HepMC3Config.cmake
+%{_datadir}/HeppMC3/cmake/HepMC3Config-version.cmake
+%{_datadir}/HeppMC3/cmake/HepMC3Targets.cmake
+%{_datadir}/HeppMC3/cmake/HepMC3Targets-release.cmake
 
 %files search
 %{_libdir}/libHepMC3search.so.5
 
 %files search-devel
 %{_libdir}/libHepMC3search.so
-%{_includedir}/%{name}/AttributeFeature.h
-%{_includedir}/%{name}/Feature.h
-%{_includedir}/%{name}/Filter.h
-%{_includedir}/%{name}/FilterAttribute.h
-%{_includedir}/%{name}/Relatives.h
-%{_includedir}/%{name}/Selector.h
-%{_datadir}/%{name}/cmake/HepMC3searchTargets.cmake
-%{_datadir}/%{name}/cmake/HepMC3searchTargets-release.cmake
+%{_includedir}/HeppMC3/AttributeFeature.h
+%{_includedir}/HeppMC3/Feature.h
+%{_includedir}/HeppMC3/Filter.h
+%{_includedir}/HeppMC3/FilterAttribute.h
+%{_includedir}/HeppMC3/Relatives.h
+%{_includedir}/HeppMC3/Selector.h
+%{_datadir}/HeppMC3/cmake/HepMC3searchTargets.cmake
+%{_datadir}/HeppMC3/cmake/HepMC3searchTargets-release.cmake
 
 %files rootIO
 %{_libdir}/root/libHepMC3rootIO.so.3
@@ -379,53 +376,53 @@ rm %{buildroot}%{_includedir}/%{name}/bxzstr/LICENSE
 %{_libdir}/root/libHepMC3rootIO.rootmap
 
 %files rootIO-devel
-%{_includedir}/%{name}/ReaderRoot.h
-%{_includedir}/%{name}/ReaderRootTree.h
-%{_includedir}/%{name}/WriterRoot.h
-%{_includedir}/%{name}/WriterRootTree.h
-%{_datadir}/%{name}/cmake/HepMC3rootIOTargets.cmake
-%{_datadir}/%{name}/cmake/HepMC3rootIOTargets-release.cmake
+%{_includedir}/HeppMC3/ReaderRoot.h
+%{_includedir}/HeppMC3/ReaderRootTree.h
+%{_includedir}/HeppMC3/WriterRoot.h
+%{_includedir}/HeppMC3/WriterRootTree.h
+%{_datadir}/HeppMC3/cmake/HepMC3rootIOTargets.cmake
+%{_datadir}/HeppMC3/cmake/HepMC3rootIOTargets-release.cmake
 
 %files protobufIO
 %{_libdir}/libHepMC3protobufIO.so.1
 
 %files protobufIO-devel
 %{_libdir}/libHepMC3protobufIO.so
-%{_includedir}/%{name}/Readerprotobuf.h
-%{_includedir}/%{name}/Writerprotobuf.h
-%{_datadir}/%{name}/cmake/HepMC3protobufIOTargets.cmake
-%{_datadir}/%{name}/cmake/HepMC3protobufIOTargets-release.cmake
+%{_includedir}/HeppMC3/Readerprotobuf.h
+%{_includedir}/HeppMC3/Writerprotobuf.h
+%{_datadir}/HeppMC3/cmake/HepMC3protobufIOTargets.cmake
+%{_datadir}/HeppMC3/cmake/HepMC3protobufIOTargets-release.cmake
 
 %files interfaces-devel
-%{_datadir}/%{name}/interfaces
+%{_datadir}/HeppMC3/interfaces
 
 %if %{?rhel}%{!?rhel:0} == 7
-%files -n python2-%{name}
+%files -n python2-HeppMC3
 %dir %{python2_sitearch}/pyHepMC3
 %{python2_sitearch}/pyHepMC3/__init__.py*
 %{python2_sitearch}/pyHepMC3/pyHepMC3.so
 %{python2_sitearch}/pyHepMC3-*.egg-info
 %license python/include/LICENSE
 
-%files -n python2-%{name}-search
+%files -n python2-HeppMC3-search
 %dir %{python2_sitearch}/pyHepMC3/search
 %{python2_sitearch}/pyHepMC3/search/__init__.py*
 %{python2_sitearch}/pyHepMC3/search/pyHepMC3search.so
 %{python2_sitearch}/pyHepMC3.search-*.egg-info
 
-%files -n python2-%{name}-rootIO
+%files -n python2-HeppMC3-rootIO
 %dir %{python2_sitearch}/pyHepMC3/rootIO
 %{python2_sitearch}/pyHepMC3/rootIO/__init__.py*
 %{python2_sitearch}/pyHepMC3/rootIO/pyHepMC3rootIO.so
 %{python2_sitearch}/pyHepMC3.rootIO-*.egg-info
 
-%files -n python2-%{name}-protobufIO
+%files -n python2-HeppMC3-protobufIO
 %dir %{python2_sitearch}/pyHepMC3/protobufIO
 %{python2_sitearch}/pyHepMC3/protobufIO/__init__.py*
 %{python2_sitearch}/pyHepMC3/protobufIO/pyHepMC3protobufIO.so
 %{python2_sitearch}/pyHepMC3.protobufIO-*.egg-info
 
-%files -n python%{?python3_other_pkgversion}-%{name}
+%files -n python%{?python3_other_pkgversion}-HeppMC3
 %dir %{python3_other_sitearch}/pyHepMC3
 %{python3_other_sitearch}/pyHepMC3/__init__.py
 %{python3_other_sitearch}/pyHepMC3/__pycache__
@@ -433,21 +430,21 @@ rm %{buildroot}%{_includedir}/%{name}/bxzstr/LICENSE
 %{python3_other_sitearch}/pyHepMC3-*.egg-info
 %license python/include/LICENSE
 
-%files -n python%{?python3_other_pkgversion}-%{name}-search
+%files -n python%{?python3_other_pkgversion}-HeppMC3-search
 %dir %{python3_other_sitearch}/pyHepMC3/search
 %{python3_other_sitearch}/pyHepMC3/search/__init__.py
 %{python3_other_sitearch}/pyHepMC3/search/__pycache__
 %{python3_other_sitearch}/pyHepMC3/search/pyHepMC3search.so
 %{python3_other_sitearch}/pyHepMC3.search-*.egg-info
 
-%files -n python%{?python3_other_pkgversion}-%{name}-rootIO
+%files -n python%{?python3_other_pkgversion}-HeppMC3-rootIO
 %dir %{python3_other_sitearch}/pyHepMC3/rootIO
 %{python3_other_sitearch}/pyHepMC3/rootIO/__init__.py
 %{python3_other_sitearch}/pyHepMC3/rootIO/__pycache__
 %{python3_other_sitearch}/pyHepMC3/rootIO/pyHepMC3rootIO.so
 %{python3_other_sitearch}/pyHepMC3.rootIO-*.egg-info
 
-%files -n python%{?python3_other_pkgversion}-%{name}-protobufIO
+%files -n python%{?python3_other_pkgversion}-HeppMC3-protobufIO
 %dir %{python3_other_sitearch}/pyHepMC3/protobufIO
 %{python3_other_sitearch}/pyHepMC3/protobufIO/__init__.py
 %{python3_other_sitearch}/pyHepMC3/protobufIO/__pycache__
@@ -455,7 +452,7 @@ rm %{buildroot}%{_includedir}/%{name}/bxzstr/LICENSE
 %{python3_other_sitearch}/pyHepMC3.protobufIO-*.egg-info
 %endif
 
-%files -n python%{python3_pkgversion}-%{name}
+%files -n python%{python3_pkgversion}-HeppMC3
 %dir %{python3_sitearch}/pyHepMC3
 %{python3_sitearch}/pyHepMC3/__init__.py
 %{python3_sitearch}/pyHepMC3/__pycache__
@@ -463,21 +460,21 @@ rm %{buildroot}%{_includedir}/%{name}/bxzstr/LICENSE
 %{python3_sitearch}/pyHepMC3-*.egg-info
 %license python/include/LICENSE
 
-%files -n python%{python3_pkgversion}-%{name}-search
+%files -n python%{python3_pkgversion}-HeppMC3-search
 %dir %{python3_sitearch}/pyHepMC3/search
 %{python3_sitearch}/pyHepMC3/search/__init__.py
 %{python3_sitearch}/pyHepMC3/search/__pycache__
 %{python3_sitearch}/pyHepMC3/search/pyHepMC3search.so
 %{python3_sitearch}/pyHepMC3.search-*.egg-info
 
-%files -n python%{python3_pkgversion}-%{name}-rootIO
+%files -n python%{python3_pkgversion}-HeppMC3-rootIO
 %dir %{python3_sitearch}/pyHepMC3/rootIO
 %{python3_sitearch}/pyHepMC3/rootIO/__init__.py
 %{python3_sitearch}/pyHepMC3/rootIO/__pycache__
 %{python3_sitearch}/pyHepMC3/rootIO/pyHepMC3rootIO.so
 %{python3_sitearch}/pyHepMC3.rootIO-*.egg-info
 
-%files -n python%{python3_pkgversion}-%{name}-protobufIO
+%files -n python%{python3_pkgversion}-HeppMC3-protobufIO
 %dir %{python3_sitearch}/pyHepMC3/protobufIO
 %{python3_sitearch}/pyHepMC3/protobufIO/__init__.py
 %{python3_sitearch}/pyHepMC3/protobufIO/__pycache__
