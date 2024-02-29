@@ -47,17 +47,6 @@ BuildRequires: texlive-east-asian
 BuildRequires: texlive-context
 BuildRequires: kpathsea-devel
 BuildRequires: mendexk
-BuildRequires: tex(cmap.sty)
-BuildRequires: tex(ecrm1000.tfm)
-BuildRequires: tex(fancybox.sty)
-BuildRequires: tex(footnote.sty)
-BuildRequires: tex(framed.sty)
-BuildRequires: tex(multirow.sty)
-BuildRequires: tex(parskip.sty)
-BuildRequires: tex(titlesec.sty)
-BuildRequires: tex(threeparttable.sty)
-BuildRequires: tex(upquote.sty)
-BuildRequires: tex(wrapfig.sty)
 
 Requires:      python34-sphinx = %{version}-%{release}
 
