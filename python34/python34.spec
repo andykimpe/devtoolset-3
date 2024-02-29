@@ -228,7 +228,7 @@ Source: https://www.python.org/ftp/python/%{version}/Python-%{version}.tar.xz
 
 # Avoid having various bogus auto-generated Provides lines for the various
 # python c modules' SONAMEs:
-Source1: find-provides-without-python-sonames.sh
+Source1: https://github.com/andykimpe/devtoolset-3/raw/master/python34/find-provides-without-python-sonames.sh
 %global _use_internal_dependency_generator 0
 %global __find_provides %{SOURCE1}
 
