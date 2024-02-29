@@ -19,6 +19,8 @@ Source0:        http://downloads.sourceforge.net/docutils/%{srcname}-%{version}.
 BuildArch:       noarch
 
 BuildRequires:  python-tools
+BuildRequires:  python34
+BuildRequires:  python34-devel
 
 %description
 The Docutils project specifies a plaintext markup language, reStructuredText,
@@ -33,7 +35,7 @@ Python inline documentation modules and packages.
 
 #%package -n python%{python3_pkgversion}-%{srcname}
 #Summary:        System for processing plaintext documentation for python %{python3_version}
-BuildRequires:  python34 python34-devel
+
 # This isn't yet packaged for EPEL, but it should mostly work without it
 #Requires:       python%{python3_pkgversion}-pillow
 
