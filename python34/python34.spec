@@ -1335,7 +1335,7 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %post -p /sbin/ldconfig libs
 %postun -p /sbin/ldconfig libs
 
-#%ldconfig_scriptlets libs
+#####%#ldconfig_scriptlets libs
 
 
 %files
