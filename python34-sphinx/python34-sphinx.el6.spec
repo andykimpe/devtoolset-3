@@ -32,8 +32,21 @@ BuildRequires: texinfo
 BuildRequires: python2-docutils
 BuildRequires: python-jinja2
 # note: no Python3 xapian binding yet
-BuildRequires: texlive-collection-fontsrecommended
-BuildRequires: texlive-collection-latex
+BuildRequires: texlive
+BuildRequires: teckit-devel
+BuildRequires: texlive-texmf
+BuildRequires: texlive-texmf-fonts
+BuildRequires: texlive-texmf-errata
+BuildRequires: texlive-afm
+BuildRequires: texlive-utils
+BuildRequires: texlive-xetex
+BuildRequires: texlive-dvips
+BuildRequires: texlive-dviutils
+BuildRequires: texlive-latex
+BuildRequires: texlive-east-asian
+BuildRequires: texlive-context
+BuildRequires: kpathsea-devel
+BuildRequires: mendexk
 BuildRequires: tex(cmap.sty)
 BuildRequires: tex(ecrm1000.tfm)
 BuildRequires: tex(fancybox.sty)
