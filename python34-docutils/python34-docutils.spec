@@ -92,19 +92,24 @@ mv tmp tools/editors/emacs/IDEAS.rst
 
 
 %build
-%py3_build
+  CFLAGS="${CFLAGS:-${RPM_OPT_FLAGS}}" LDFLAGS="${LDFLAGS:-${RPM_LD_FLAGS}}"\
+  /usr/bin/python3.4 setup.py  build --executable="/usr/bin/python3.4 -sP"
+###%#py3_build
 ###%#{?python3_other_pkgversion: %py3_other_build}
 
 
 %install
-%py3_install
+  CFLAGS="${CFLAGS:-${RPM_OPT_FLAGS}}" LDFLAGS="${LDFLAGS:-${RPM_LD_FLAGS}}"\
+  /usr/bin/python3.4 setup.py  install -O1 --skip-build --root /home/andy/rpmbuild/BUILDROOT/%{NAME}-%{VERSION}-%{RELEASE}.x86_64 --prefix /usr 
+  rm -rfv /home/andy/rpmbuild/BUILDROOT/%{NAME}-%{VERSION}-%{RELEASE}.x86_64/usr/bin/__pycache__
+###%#py3_install
 
 # docutils setup.py runs 2to3 on a copy of the tests and puts it in sitelib.
-rm -rf %{buildroot}%{python3_sitelib}/test
+rm -rf %{buildroot}/usr/lib/python3.4/site-packages/test
 
 for file in %{buildroot}/%{_bindir}/*.py; do
-    mv $file `dirname $file`/`basename $file .py`-%{python3_version}
-    ln -s `basename $file .py`-%{python3_version} `dirname $file`/`basename $file .py`-3
+    mv $file `dirname $file`/`basename $file .py`-3.4
+    ln -s `basename $file .py`-3.4 `dirname $file`/`basename $file .py`-3
 done
 
 ###%#if 0%{?python3_other_pkgversion}
@@ -134,7 +139,7 @@ mv docs/user/rst/images/biohazard.swf ./biohazard.swf
 %doc THANKS.txt tools/editors
 %{_bindir}/*-34
 %{_bindir}/*-3
-%{python3_sitelib}/*
+/usr/lib/python3.4/site-packages/*
 
 #%if 0%{?python3_other_pkgversion}
 #%files -n python%{python3_other_pkgversion}-%{srcname}
