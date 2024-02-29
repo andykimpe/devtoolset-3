@@ -153,7 +153,7 @@
 Summary: Version 3 of the Python programming language aka Python 3000
 Name: python%{pyshortver}
 Version: %{pybasever}.10
-Release: 10%{?dist}
+Release: 11%{?dist}
 License: Python
 
 
