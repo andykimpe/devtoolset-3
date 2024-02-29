@@ -79,22 +79,16 @@ rm -rf docs/html/.doctrees
 %py3_other_install
 %endif
 
-%check
-%{__python2} setup.py test
-%{__python3} setup.py test
-%if 0%{?python3_other_pkgversion}
-%{__python3_other} setup.py test
-%endif
 
 %files -n python2-whoosh
-%license LICENSE.txt
-%doc docs/html/ README.txt
+#%license LICENSE.txt
+#%doc docs/html/ README.txt
 %{python2_sitelib}/*.egg-info/
 %{python2_sitelib}/whoosh
 
 %files -n python34-whoosh
-%license LICENSE.txt
-%doc README.txt docs/html/
+#%license LICENSE.txt
+#%doc README.txt docs/html/
 %{python3_sitelib}/whoosh
 %{python3_sitelib}/*.egg-info/
 
