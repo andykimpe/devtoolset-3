@@ -136,12 +136,12 @@ mv docs/user/rst/images/biohazard.swf ./biohazard.swf
 
 
 %files -n python34-%{srcname}
-%license COPYING.txt licenses
-%doc BUGS.txt FAQ.txt HISTORY.txt README.txt RELEASE-NOTES.txt 
-%doc THANKS.txt tools/editors
-%{_bindir}/*-3.4
-%{_bindir}/*-3
-/usr/lib/python3.4/site-packages/*
+#%license COPYING.txt licenses
+#%doc BUGS.txt FAQ.txt HISTORY.txt README.txt RELEASE-NOTES.txt 
+#%doc THANKS.txt tools/editors
+#%{_bindir}/*-3.4
+#%{_bindir}/*-3
+#/usr/lib/python3.4/site-packages/*
 
 #%if 0%{?python3_other_pkgversion}
 #%files -n python%{python3_other_pkgversion}-%{srcname}
@@ -153,8 +153,8 @@ mv docs/user/rst/images/biohazard.swf ./biohazard.swf
 #%endif # python3_other_pkgversion
 
 %files doc
-%license COPYING.txt licenses
-%doc docs/*
+#%license COPYING.txt licenses
+#%doc docs/*
 
 %changelog
 * Mon Apr 15 2019 Orion Poplawski <orion@nwra.com> - 0.14-1
