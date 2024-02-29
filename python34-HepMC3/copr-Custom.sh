@@ -10,5 +10,6 @@
 # rm -f copr-Custom.sh
 wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/h/HepMC3-3.2.7-1.el7.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
-rm-f *.src.rpm HepMC3.spec
+rm-f *.src.rpm
+rm -rf HepMC3.spec
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34-HepMC3/python34-HepMC3.spec
