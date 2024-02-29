@@ -22,11 +22,11 @@
 %global pyshortver 34
 
 # is this the EPEL 7 main Python 3?
-%if "%python3_pkgversion" == "%pyshortver"
-%global main_python3 1
-%else
+#%if "%python3_pkgversion" == "%pyshortver"
+#%global main_python3 1
+#%else
 %global main_python3 0
-%endif
+#%endif
 
 
 %global pylibdir %{_libdir}/python%{pybasever}
