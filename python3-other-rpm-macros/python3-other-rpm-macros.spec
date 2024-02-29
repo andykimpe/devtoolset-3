@@ -12,7 +12,7 @@ BuildArch:      noarch
 %description
 This source package contains the EPEL Python RPM macros.
 
-%package -n python3-other-rpm-macros
+%package
 Summary:        RPM macros for building Python 3 other packages
 Conflicts:      python3-rpm-macros < 3-25
 
@@ -30,7 +30,7 @@ mkdir -p %{buildroot}/usr/lib/rpm/macros.d
 install -m 644 %{SOURCE4} %{buildroot}/usr/lib/rpm/macros.d
 
 
-%files -n python3-other-rpm-macros
+%files
 /usr/lib/rpm/macros.d/macros.python3_other
 
 
