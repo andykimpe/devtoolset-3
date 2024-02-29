@@ -392,14 +392,14 @@ LANG=en_US.UTF-8 PYTHON=%{__python3} make test || :
 %files -n python%{python3_pkgversion}-sphinx-latex
 %license LICENSE
 
-%files -n python%{python3_other_pkgversion}-sphinx
-%license LICENSE
-%doc AUTHORS CHANGES EXAMPLES README.rst TODO
-%{_bindir}/sphinx-*-%{python3_other_version}
-%{python3_other_sitelib}/*
+#%files -n python%{python3_other_pkgversion}-sphinx
+#%license LICENSE
+#%doc AUTHORS CHANGES EXAMPLES README.rst TODO
+#%{_bindir}/sphinx-*-%{python3_other_version}
+#%{python3_other_sitelib}/*
 
-%files -n python%{python3_other_pkgversion}-sphinx-latex
-%license LICENSE
+#%files -n python%{python3_other_pkgversion}-sphinx-latex
+#%license LICENSE
 
 %files doc
 %license LICENSE
