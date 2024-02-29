@@ -45,6 +45,18 @@ BuildRequires: tex(titlesec.sty)
 BuildRequires: tex(threeparttable.sty)
 BuildRequires: tex(upquote.sty)
 BuildRequires: tex(wrapfig.sty)
+BuildRequires: python34-devel
+BuildRequires: python34-setuptools
+BuildRequires: python34-docutils
+BuildRequires: python34-jinja2
+BuildRequires: python34-pygments
+BuildRequires: python34-nose
+BuildRequires: python34-sqlalchemy
+BuildRequires: python34-whoosh
+Requires:      %{name}-common = %{version}-%{release}
+Requires:      python34-docutils
+Requires:      python34-jinja2
+Requires:      python34-pygments
 
 Requires:      python34-sphinx = %{version}-%{release}
 
@@ -86,7 +98,7 @@ Shared files for %{name}.
 
 %package latex
 Summary:       LaTeX builder dependencies for %{name}
-Requires:      python34}-sphinx = %{version}-%{release}
+Requires:      python34-sphinx = %{version}-%{release}
 Requires:      texlive-collection-fontsrecommended
 Requires:      texlive-collection-latex
 Requires:      tex(cmap.sty)
@@ -113,78 +125,78 @@ This package pulls in the TeX dependencies needed by Sphinx's LaTeX
 builder.
 
 
-%package -n python34-sphinx
-Summary:       Python documentation generator
-BuildRequires: python34-devel
-BuildRequires: python34-setuptools
-BuildRequires: python34-docutils
-BuildRequires: python34-jinja2
-BuildRequires: python34-pygments
-BuildRequires: python34-nose
-BuildRequires: python34-sqlalchemy
-BuildRequires: python34-whoosh
-Requires:      %{name}-common = %{version}-%{release}
-Requires:      python34-docutils
-Requires:      python34-jinja2
-Requires:      python34-pygments
-
-%description -n python34-sphinx
-Sphinx is a tool that makes it easy to create intelligent and
-beautiful documentation for Python projects (or other documents
-consisting of multiple reStructuredText sources), written by Georg
-Brandl. It was originally created to translate the new Python
-documentation, but has now been cleaned up in the hope that it will be
-useful to many other projects.
-
-Sphinx uses reStructuredText as its markup language, and many of its
-strengths come from the power and straightforwardness of
-reStructuredText and its parsing and translating suite, the Docutils.
-
-Although it is still under constant development, the following
-features are already present, work fine and can be seen "in action" in
-the Python docs:
-
-    * Output formats: HTML (including Windows HTML Help) and LaTeX,
-      for printable PDF versions
-    * Extensive cross-references: semantic markup and automatic links
-      for functions, classes, glossary terms and similar pieces of
-      information
-    * Hierarchical structure: easy definition of a document tree, with
-      automatic links to siblings, parents and children
-    * Automatic indices: general index as well as a module index
-    * Code handling: automatic highlighting using the Pygments highlighter
-    * Various extensions are available, e.g. for automatic testing of
-      snippets and inclusion of appropriately formatted docstrings.
-
-%package -n python34-sphinx-latex
-Summary:       LaTeX builder dependencies for %{name}
-Requires:      python34-sphinx = %{version}-%{release}
-Requires:      texlive-collection-fontsrecommended
-Requires:      texlive-collection-latex
-Requires:      tex(cmap.sty)
-Requires:      tex(ecrm1000.tfm)
-Requires:      tex(fancybox.sty)
-Requires:      tex(footnote.sty)
-Requires:      tex(framed.sty)
-Requires:      tex(multirow.sty)
-Requires:      tex(parskip.sty)
-Requires:      tex(titlesec.sty)
-Requires:      tex(threeparttable.sty)
-Requires:      tex(upquote.sty)
-Requires:      tex(wrapfig.sty)
-
-%description -n python34-sphinx-latex
-Sphinx is a tool that makes it easy to create intelligent and
-beautiful documentation for Python projects (or other documents
-consisting of multiple reStructuredText sources), written by Georg
-Brandl. It was originally created to translate the new Python
-documentation, but has now been cleaned up in the hope that it will be
-useful to many other projects.
-
-This package pulls in the TeX dependencies needed by Sphinx's LaTeX
+#%package -n python34-sphinx
+#Summary:       Python documentation generator
+#BuildRequires: python34-devel
+#BuildRequires: python34-setuptools
+#BuildRequires: python34-docutils
+#BuildRequires: python34-jinja2
+#BuildRequires: python34-pygments
+#BuildRequires: python34-nose
+#BuildRequires: python34-sqlalchemy
+#BuildRequires: python34-whoosh
+#Requires:      %{name}-common = %{version}-%{release}
+#Requires:      python34-docutils
+#Requires:      python34-jinja2
+#Requires:      python34-pygments
+#
+#%description -n python34-sphinx
+#Sphinx is a tool that makes it easy to create intelligent and
+#beautiful documentation for Python projects (or other documents
+#consisting of multiple reStructuredText sources), written by Georg
+#Brandl. It was originally created to translate the new Python
+#documentation, but has now been cleaned up in the hope that it will be
+#useful to many other projects.
+#
+#Sphinx uses reStructuredText as its markup language, and many of its
+#strengths come from the power and straightforwardness of
+#reStructuredText and its parsing and translating suite, the Docutils.
+#
+#Although it is still under constant development, the following
+#features are already present, work fine and can be seen "in action" in
+#the Python docs:
+#
+#    * Output formats: HTML (including Windows HTML Help) and LaTeX,
+#      for printable PDF versions
+#    * Extensive cross-references: semantic markup and automatic links
+#      for functions, classes, glossary terms and similar pieces of
+#      information
+#    * Hierarchical structure: easy definition of a document tree, with
+#      automatic links to siblings, parents and children
+#    * Automatic indices: general index as well as a module index
+#    * Code handling: automatic highlighting using the Pygments highlighter
+#    * Various extensions are available, e.g. for automatic testing of
+#      snippets and inclusion of appropriately formatted docstrings.
+#
+#%package -n python34-sphinx-latex
+#Summary:       LaTeX builder dependencies for %{name}
+#Requires:      python34-sphinx = %{version}-%{release}
+#Requires:      texlive-collection-fontsrecommended
+#Requires:      texlive-collection-latex
+#Requires:      tex(cmap.sty)
+#Requires:      tex(ecrm1000.tfm)
+#Requires:      tex(fancybox.sty)
+#Requires:      tex(footnote.sty)
+#Requires:      tex(framed.sty)
+#Requires:      tex(multirow.sty)
+#Requires:      tex(parskip.sty)
+#Requires:      tex(titlesec.sty)
+#Requires:      tex(threeparttable.sty)
+#Requires:      tex(upquote.sty)
+#Requires:      tex(wrapfig.sty)
+#
+#%description -n python34-sphinx-latex
+#Sphinx is a tool that makes it easy to create intelligent and
+#beautiful documentation for Python projects (or other documents
+#consisting of multiple reStructuredText sources), written by Georg
+#Brandl. It was originally created to translate the new Python
+#documentation, but has now been cleaned up in the hope that it will be
+#useful to many other projects.
+#
+#This package pulls in the TeX dependencies needed by Sphinx's LaTeX
 builder.
-
-
+#
+#
 #%if 0%{?python3_other_pkgversion}
 #%package -n python%{python3_other_pkgversion}-sphinx
 #Summary:       Python documentation generator
@@ -363,12 +375,6 @@ popd
   >> sphinx3.lang
 
 
-%check
-# texinfo seems to fail due to https://bugzilla.redhat.com/show_bug.cgi?id=1134160
-# Several failures but the show must go on...
-LANG=en_US.UTF-8 PYTHON=%{__python3} make test || :
-
-
 %files
 %license LICENSE
 %{_bindir}/sphinx-*-3
@@ -382,15 +388,15 @@ LANG=en_US.UTF-8 PYTHON=%{__python3} make test || :
 %files latex
 %license LICENSE
 
-%files -n python34-sphinx
-%license LICENSE
-%doc AUTHORS CHANGES EXAMPLES README.rst TODO
-%{_bindir}/sphinx-*-%{python3_version}
-%{_mandir}/man1/sphinx-*-%{python3_version}.1*
-%{python3_sitelib}/*
+#%files -n python34-sphinx
+#%license LICENSE
+#%doc AUTHORS CHANGES EXAMPLES README.rst TODO
+#%{_bindir}/sphinx-*-%{python3_version}
+#%{_mandir}/man1/sphinx-*-%{python3_version}.1*
+#%{python3_sitelib}/*
 
-%files -n python34-sphinx-latex
-%license LICENSE
+#%files -n python34-sphinx-latex
+#%license LICENSE
 
 #%files -n python%{python3_other_pkgversion}-sphinx
 #%license LICENSE
