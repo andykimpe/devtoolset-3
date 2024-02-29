@@ -137,7 +137,7 @@ mv docs/user/rst/images/biohazard.swf ./biohazard.swf
 %license COPYING.txt licenses
 %doc BUGS.txt FAQ.txt HISTORY.txt README.txt RELEASE-NOTES.txt 
 %doc THANKS.txt tools/editors
-%{_bindir}/*-34
+%{_bindir}/*-3.4
 %{_bindir}/*-3
 /usr/lib/python3.4/site-packages/*
 
