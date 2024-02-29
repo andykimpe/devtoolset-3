@@ -11,5 +11,5 @@
 wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/p/python3-docutils-0.14-1.el7.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
-#rm -rf *.spec
-#wget https://github.com/andykimpe/devtoolset-3/raw/master/python34-docutils/python34-docutils.spec
+rm -rf *.spec
+wget https://github.com/andykimpe/devtoolset-3/raw/master/python34-docutils/python34-docutils.spec
