@@ -29,7 +29,7 @@ BuildRequires: dos2unix
 BuildRequires: gettext
 BuildRequires: texinfo
 # For man/html - requires python2
-BuildRequires: python2-docutils
+BuildRequires: python-docutils
 BuildRequires: python-jinja2
 # note: no Python3 xapian binding yet
 BuildRequires: texlive-collection-fontsrecommended
