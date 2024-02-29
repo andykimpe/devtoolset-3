@@ -8,7 +8,7 @@
 # wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/copr-Custom.sh -O copr-Custom.sh
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
-wget https://github.com/andykimpe/devtoolset-3/raw/master/gcc49/python34.spec -O python34.spec
+wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/python34.spec -O python34.spec
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/libpython.stp
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/systemtap-example.stp
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/pyfuntop.stp
