@@ -358,7 +358,7 @@ mv doc reST
 
 # Move language files to /usr/share;
 # patch to support this incorporated in 0.6.6
-pushd %{buildroot}%{python3_sitelib}
+pushd %{buildroot}/usr/lib/python3.4/site-packages/
 for lang in `find sphinx/locale -maxdepth 1 -mindepth 1 -type d -not -path '*/\.*' -not -name __pycache__ -printf "%f "`;
 do
   install -d %{buildroot}%{_datadir}/sphinx/locale/$lang
