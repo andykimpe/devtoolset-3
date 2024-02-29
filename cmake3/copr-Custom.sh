@@ -8,7 +8,7 @@
 # wget https://github.com/andykimpe/devtoolset-3/raw/master/cmake3/copr-Custom.sh -O copr-Custom.sh
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
-wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/h/HepMC3-3.2.7-1.el7.src.rpm
+wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/c/cmake3-3.17.5-1.el7.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
 rm -rf cmake3.spec cmake.spec
