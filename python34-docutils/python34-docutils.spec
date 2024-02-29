@@ -33,7 +33,7 @@ Python inline documentation modules and packages.
 
 #%package -n python%{python3_pkgversion}-%{srcname}
 #Summary:        System for processing plaintext documentation for python %{python3_version}
-BuildRequires:  python34-devel
+BuildRequires:  python34 python34-devel
 # This isn't yet packaged for EPEL, but it should mostly work without it
 #Requires:       python%{python3_pkgversion}-pillow
 
