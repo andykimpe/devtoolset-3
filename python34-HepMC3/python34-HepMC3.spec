@@ -271,7 +271,7 @@ This package provides HepMC manuals and examples.
 %install
 %cmake3_install
 
-rm %{buildroot}%{_includedir}/HeppMC3/bxzstr/LICENSE
+rm -f %{buildroot}%{_includedir}/HeppMC3/bxzstr/LICENSE
 
 %ldconfig_scriptlets
 %ldconfig_scriptlets search
