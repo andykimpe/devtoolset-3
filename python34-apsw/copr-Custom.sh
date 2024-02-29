@@ -8,6 +8,6 @@
 # wget https://github.com/andykimpe/devtoolset-3/raw/master/python34-apsw/copr-Custom.sh -O copr-Custom.sh
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
-wget   https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/p/python-apsw-3.7.17.r1-3.el7.src.rpm
+wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/p/python-apsw-3.7.17.r1-3.el7.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
 rm-f *.src.rpm
