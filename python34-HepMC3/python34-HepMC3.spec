@@ -150,7 +150,7 @@ Requires:	%{name}-protobufIO%{?_isa} = %{version}-%{release}
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 Requires:	python2-HeppMC3%{?_isa} = %{version}-%{release}
 
-%description -n python2-%{name}-protobufIO
+%description -n python2-HeppMC3-protobufIO
 This package provides the Python 2 bindings for HepMC3 protobuf I/O module.
 
 %package -n python%{?python3_other_pkgversion}-HeppMC3
@@ -159,7 +159,7 @@ License:	LGPL-3.0-or-later AND CNRI-Python AND BSD-3-Clause
 Provides:	python%{python3_other_pkgversion}-HeppMC3
 Requires:	%{name}%{?_isa} = %{version}-%{release}
 
-%description -n python%{?python3_other_pkgversion}-%{name}
+%description -n python%{?python3_other_pkgversion}-HeppMC3
 This package provides the Python 3 bindings for HepMC3.
 
 %package -n python%{?python3_other_pkgversion}-HeppMC3-search
