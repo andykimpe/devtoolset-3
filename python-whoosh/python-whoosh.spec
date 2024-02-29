@@ -36,7 +36,6 @@ Summary:    Fast, Python3 full text indexing, search, and spell checking library
 BuildRequires: python34-devel
 BuildRequires: python34-setuptools
 BuildRequires: python34-pytest
-Provide: python34-whoosh
 
 %description -n python34-whoosh
 Whoosh is a fast, featureful full-text indexing and searching library
