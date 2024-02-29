@@ -16,6 +16,7 @@ wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/pyfuntop.stp
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/check-pyc-and-pyo-timestamps.py
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/00001-rpath.patch
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/python34-readline.patch
+wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/find-provides-without-python-sonames.sh
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/00055-systemtap.patch
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/00102-lib64.patch
 wget https://github.com/andykimpe/devtoolset-3/raw/master/python34/00104-lib64-fix-for-test_install.patch
