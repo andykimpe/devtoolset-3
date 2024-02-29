@@ -12,7 +12,6 @@ BuildArch:      noarch
 %description
 This source package contains the EPEL Python RPM macros.
 
-%package
 Summary:        RPM macros for building Python 3 other packages
 Conflicts:      python3-rpm-macros < 3-25
 
