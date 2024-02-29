@@ -214,10 +214,10 @@ BuildRequires: valgrind-devel
 BuildRequires: xz-devel
 BuildRequires: zlib-devel
 
-%if 0%{?with_rewheel}
-BuildRequires: python%{pyshortver}-setuptools
-BuildRequires: python%{pyshortver}-pip
-%endif
+#%if 0%{?with_rewheel}
+#BuildRequires: python%{pyshortver}-setuptools
+#BuildRequires: python%{pyshortver}-pip
+#%endif
 
 
 # =======================
@@ -488,9 +488,9 @@ Patch188: 00188-fix-lib2to3-tests-when-hashlib-doesnt-compile-properly.patch
 # Add the rewheel module, allowing to recreate wheels from already installed
 # ones
 # https://github.com/bkabrda/rewheel
-%if 0%{with_rewheel}
+#%if 0%{with_rewheel}
 Patch189: 00189-add-rewheel-module.patch
-%endif
+#%endif
 
 # Tests requiring SIGHUP to work don't work in Koji
 # see rhbz#1088233
@@ -593,19 +593,19 @@ Patch5000: 05000-autotool-intermediates.patch
 URL: http://www.python.org/
 
 # See notes in bug 532118:
-Provides: python(abi) = %{pybasever}
+#Provides: python(abi) = %{pybasever}
 
 Requires: %{name}-libs%{?_isa} = %{version}-%{release}
 
-%if 0%{with_rewheel}
-Requires: python%{pyshortver}-setuptools
-Requires: python%{pyshortver}-pip
-%else
+#%if 0%{with_rewheel}
+#Requires: python%{pyshortver}-setuptools
+#Requires: python%{pyshortver}-pip
+#%else
 # When rewheel is disabled we keep the bundled setuptools and pip
 # so that virtualenvs work properly
-Provides: bundled(python%{pyshortver}-pip) = 9.0.1
-Provides: bundled(python%{pyshortver}-setuptools) = 28.8.0
-%endif
+#Provides: bundled(python%{pyshortver}-pip) = 9.0.1
+#Provides: bundled(python%{pyshortver}-setuptools) = 28.8.0
+#%endif
 
 # The IUS repository previously maintained a python34u package.  Python 3.4 is
 # EOL upstream, meaning IUS pacakges will be retired soon.  As a coordinated
@@ -793,10 +793,10 @@ for f in md5module.c sha1module.c sha256module.c sha512module.c; do
 done
 
 # Since we unbundle pip, our version is different from upstream
-%if 0%{with_rewheel}
-%global pip_version 9.0.1
-sed -r -i s/'_PIP_VERSION = "[0-9.]+"'/'_PIP_VERSION = "%{pip_version}"'/ Lib/ensurepip/__init__.py
-%endif
+#%if 0%{with_rewheel}
+#%global pip_version 9.0.1
+#sed -r -i s/'_PIP_VERSION = "[0-9.]+"'/'_PIP_VERSION = "%{pip_version}"'/ Lib/ensurepip/__init__.py
+#%endif
 
 #
 # Apply patches:
@@ -853,9 +853,9 @@ sed -r -i s/'_PIP_VERSION = "[0-9.]+"'/'_PIP_VERSION = "%{pip_version}"'/ Lib/en
 %patch186 -p1
 %patch188 -p1
 
-%if 0%{with_rewheel}
-%patch189 -p1
-%endif
+#%if 0%{with_rewheel}
+#%patch189 -p1
+#%endif
 
 %patch194 -p1
 %patch196 -p1
@@ -1474,18 +1474,18 @@ rm -f %{buildroot}%{_libdir}/libpython3.so
 %dir %{pylibdir}/ensurepip/__pycache__/
 %{pylibdir}/ensurepip/*.py
 %{pylibdir}/ensurepip/__pycache__/*%{bytecode_suffixes}
-%if 0%{?with_rewheel}
-%exclude %{pylibdir}/ensurepip/_bundled
-%else
+#%if 0%{?with_rewheel}
+#%exclude %{pylibdir}/ensurepip/_bundled
+#%else
 %{pylibdir}/ensurepip/_bundled
-%endif
+#%endif
 
-%if 0%{?with_rewheel}
-%dir %{pylibdir}/ensurepip/rewheel/
-%dir %{pylibdir}/ensurepip/rewheel/__pycache__/
-%{pylibdir}/ensurepip/rewheel/*.py
-%{pylibdir}/ensurepip/rewheel/__pycache__/*%{bytecode_suffixes}
-%endif
+#%if 0%{?with_rewheel}
+#%dir %{pylibdir}/ensurepip/rewheel/
+#%dir %{pylibdir}/ensurepip/rewheel/__pycache__/
+#%{pylibdir}/ensurepip/rewheel/*.py
+#%{pylibdir}/ensurepip/rewheel/__pycache__/*%{bytecode_suffixes}
+#%endif
 
 %{pylibdir}/html
 %{pylibdir}/http
