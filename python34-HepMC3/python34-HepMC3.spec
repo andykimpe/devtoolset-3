@@ -1,7 +1,7 @@
 %undefine __cmake_in_source_build
 %undefine __cmake3_in_source_build
 
-Name:		python%{python3_pkgversion}-HepMC3
+Name:		python34-HepMC3
 Version:	3.2.7
 Release:	2%{?dist}
 Summary:	C++ Event Record for Monte Carlo Generators
