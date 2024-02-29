@@ -1,7 +1,7 @@
 %undefine __cmake_in_source_build
 %undefine __cmake3_in_source_build
 
-Name:		HepMC3
+Name:		python%{python3_pkgversion}-HepMC3
 Version:	3.2.7
 Release:	1%{?dist}
 Summary:	C++ Event Record for Monte Carlo Generators
@@ -10,7 +10,7 @@ Summary:	C++ Event Record for Monte Carlo Generators
 #		The included bxzstr header-only library is MPLv2.0
 License:	LGPL-3.0-or-later AND MPL-2.0
 URL:		https://hepmc.web.cern.ch/hepmc/
-Source0:	https://hepmc.web.cern.ch/hepmc/releases/%{name}-%{version}.tar.gz
+Source0:	https://hepmc.web.cern.ch/hepmc/releases/HepMC3-%{version}.tar.gz
 
 #		The ROOT cmake file used by this project requires cmake 3.9
 BuildRequires:	cmake3 >= 3.9
@@ -246,7 +246,7 @@ BuildArch:	noarch
 This package provides HepMC manuals and examples.
 
 %prep
-%setup -q
+%setup -q -n HepMC3-3.2.7
 
 %build
 %cmake3 \
