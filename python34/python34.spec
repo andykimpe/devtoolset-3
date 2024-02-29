@@ -14,7 +14,7 @@
 # 4) python3-setuptools and python3-pip with with_rewheel set to 1
 # 5) python3 with with_rewheel set to 1
 
-%global with_rewheel 0
+%global with_rewheel 1
 
 %global pybasever 3.4
 
@@ -153,7 +153,7 @@
 Summary: Version 3 of the Python programming language aka Python 3000
 Name: python%{pyshortver}
 Version: %{pybasever}.10
-Release: 13%{?dist}
+Release: 14%{?dist}
 License: Python
 
 
