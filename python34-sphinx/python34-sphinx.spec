@@ -324,12 +324,14 @@ popd
 
 
 %install
-%py3_install
+CFLAGS="${CFLAGS:-${RPM_OPT_FLAGS}}" LDFLAGS="${LDFLAGS:-${RPM_LD_FLAGS}}"\
+/usr/bin/python3.4 setup.py  install -O1 --skip-build --root %{buildroot} --prefix /usr 
+rm -rfv %{buildroot}/usr/bin/__pycache__
 
 # Make versioned executables
 for i in sphinx-{apidoc,autogen,build,quickstart}; do
-    mv %{buildroot}%{_bindir}/$i %{buildroot}%{_bindir}/$i-%{python3_version}
-    ln -s $i-%{python3_version} %{buildroot}%{_bindir}/$i-3
+    mv %{buildroot}%{_bindir}/$i %{buildroot}%{_bindir}/$i-3.4
+    ln -s $i-3.4 %{buildroot}%{_bindir}/$i-3
 done
 
 #%if 0%{?python3_other_pkgversion}
@@ -346,7 +348,7 @@ mv doc/_build/man/sphinx-*.1 %{buildroot}%{_mandir}/man1/
 for f in %{buildroot}%{_mandir}/man1/sphinx-*.1;
 do
     cp -p $f $(echo $f | sed -e "s|.1$|-3.1|")
-    mv $f $(echo $f | sed -e "s|.1$|-%{python3_version}.1|")
+    mv $f $(echo $f | sed -e "s|.1$|-3.4.1|")
 done
 
 # Deliver rst files
