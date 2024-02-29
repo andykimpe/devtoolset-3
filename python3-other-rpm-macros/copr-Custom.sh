@@ -12,4 +12,4 @@ wget https://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/p/python-epel-rpm-ma
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
 #rm -rf *.spec
-#wget https://github.com/andykimpe/devtoolset-3/raw/master/python34-sphinx/python34-sphinx.spec
+#wget https://github.com/andykimpe/devtoolset-3/raw/master/python3-other-rpm-macros/python3-other-rpm-macros.spec
