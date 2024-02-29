@@ -1,6 +1,6 @@
 %global upstream_name Sphinx
 
-Name:       python3-sphinx
+Name:       python34-sphinx
 Version:    1.2.3
 Release:    6%{?dist}
 Summary:    Python documentation generator
