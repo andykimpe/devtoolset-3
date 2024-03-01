@@ -16,6 +16,7 @@
   /usr/lib/rpm/brp-strip-static-archive %{__strip} \
   /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump} \
   %{brp_python_hardlink}
+%endif
 
 %define glibcsrcdir glibc-2.12-2-gc4ccff1
 %define glibcversion 2.12
