@@ -1,7 +1,7 @@
 %{?scl:%{?scl_package:%scl_package strace}}
 
 Summary: Tracks and displays system calls associated with a running process
-Name: %{?scl_prefix}strace
+Name: devtoolset-3-strace
 Version: 4.8
 Release: 8%{?dist}
 License: BSD
