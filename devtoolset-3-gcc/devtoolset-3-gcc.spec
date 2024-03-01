@@ -123,7 +123,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: binutils >= 2.19.51.0.14-33
 # While gcc doesn't include statically linked binaries, during testing
 # -static is used several times.
-BuildRequires: %{?scl_prefix}glibc-static
+BuildRequires: glibc-static
 %if 0%{?scl:1}
 %if 0%{?rhel} >= 7
 BuildRequires: binutils >= 2.22.52.0.1
@@ -144,12 +144,12 @@ BuildRequires: %{?scl_prefix}gdb
 # Make sure pthread.h doesn't contain __thread tokens
 # Make sure glibc supports stack protector
 # Make sure glibc supports DT_GNU_HASH
-BuildRequires: %{?scl_prefix}glibc-devel >= 2.4.90-13
+BuildRequires: glibc-devel >= 2.4.90-13
 BuildRequires: %{?scl_prefix}elfutils-devel >= 0.147
 BuildRequires: %{?scl_prefix}elfutils-libelf-devel >= 0.147
 %ifarch ppc ppc64 ppc64le ppc64p7 s390 s390x sparc sparcv9 alpha
 # Make sure glibc supports TFmode long double
-BuildRequires: %{?scl_prefix}glibc >= 2.3.90-35
+BuildRequires: glibc >= 2.3.90-35
 %endif
 %ifarch %{multilib_64_archs} sparcv9 ppc
 # Ensure glibc{,-devel} is installed for both multilib arches
@@ -181,10 +181,10 @@ Requires: binutils >= 2.19.51.0.14-33
 %endif
 # Make sure gdb will understand DW_FORM_strp
 Conflicts: gdb < 5.1-2
-Requires: %{?scl_prefix}glibc-devel >= 2.2.90-12
+Requires: glibc-devel >= 2.2.90-12
 %ifarch ppc ppc64 ppc64le ppc64p7 s390 s390x sparc sparcv9 alpha
 # Make sure glibc supports TFmode long double
-Requires: %{?scl_prefix}glibc >= 2.3.90-35
+Requires: glibc >= 2.3.90-35
 %endif
 Requires: %{?scl_prefix}libgcc >= 4.1.2-43
 Requires: %{?scl_prefix}libgomp >= 4.4.4-13
