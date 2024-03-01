@@ -12,7 +12,6 @@ python3 link to default /usr/bin/python.
 
 %package libs
 Summary: python3 link to default /usr/bin/python
-Group: System Environment/Base
 Requires: python2-libs python3-libs
 
 %description libs
@@ -20,7 +19,6 @@ python3 link to default /usr/bin/python
 
 %package devel
 Summary: python3 link to default /usr/bin/python
-Group: System Environment/Base
 Requires: python2-devel python3-devel
 
 %description devel
@@ -28,7 +26,6 @@ python3 link to default /usr/bin/python
 
 %package idle
 Summary: python3 link to default /usr/bin/python
-Group: System Environment/Base
 Requires: python3-idle
 
 %description idle
@@ -36,7 +33,6 @@ python3 link to default /usr/bin/python
 
 %package tkinter
 Summary: python3 link to default /usr/bin/python
-Group: System Environment/Base
 Requires: python2-tkinter python3-tkinter
 
 %description tkinter
@@ -44,7 +40,6 @@ python3 link to default /usr/bin/python
 
 %package test
 Summary: python3 link to default /usr/bin/python
-Group: System Environment/Base
 Requires: python2-test python3-test
 
 %description test
@@ -65,6 +60,16 @@ ln -s /usr/bin/python3 /usr/bin/python
 rm -f /usr/bin/python
 
 %files
+
+%files libs
+
+%files devel
+
+%files idle
+
+%files tkinter
+
+%files test
 
 
 %changelog
