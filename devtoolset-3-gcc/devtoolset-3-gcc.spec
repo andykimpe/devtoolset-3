@@ -95,7 +95,7 @@ Summary: GCC version 4.9
 Name: devtoolset-3-gcc
 #Name: %{?scl_prefix}gcc%{!?scl:49}
 Version: %{gcc_version}
-Release: %{gcc_release}.2%{?dist}
+Release: %{gcc_release}.3%{?dist}
 # libgcc, libgfortran, libmudflap, libgomp, libstdc++ and crtstuff have
 # GCC Runtime Exception.
 License: GPLv3+ and GPLv3+ with exceptions and GPLv2+ with exceptions and LGPLv2+ and BSD
@@ -120,7 +120,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # Need binutils which support --build-id >= 2.17.50.0.17-3
 # Need binutils which support %gnu_unique_object >= 2.19.51.0.14
 # Need binutils which support .cfi_sections >= 2.19.51.0.14-33
-BuildRequires: binutils >= 2.19.51.0.14-33
+BuildRequires: %{?scl_prefix}binutils >= 2.19.51.0.14-33
 # While gcc doesn't include statically linked binaries, during testing
 # -static is used several times.
 BuildRequires: glibc-static
@@ -133,10 +133,13 @@ BuildRequires: %{?scl_prefix}binutils >= 2.22.52.0.1
 # For testing
 BuildRequires: %{?scl_prefix}gdb >= 7.4.50
 %endif
-BuildRequires: %{?scl_prefix}zlib-devel, %{?scl_prefix}gettext, %{?scl_prefix}dejagnu, %{?scl_prefix}bison, %{?scl_prefix}flex, %{?scl_prefix}texinfo, %{?scl_prefix}sharutils
-BuildRequires: %{?scl_prefix}perl
+#BuildRequires: %{?scl_prefix}zlib-devel, %{?scl_prefix}gettext, %{?scl_prefix}dejagnu, %{?scl_prefix}bison, %{?scl_prefix}flex, %{?scl_prefix}texinfo, %{?scl_prefix}sharutils
+BuildRequires: zlib-devel, gettext, dejagnu, bison, flex, texinfo, sharutils
+#BuildRequires: %{?scl_prefix}perl
+BuildRequires: perl
 %if 0%{?rhel} >= 7
-BuildRequires: %{?scl_prefix}texinfo-tex
+#BuildRequires: %{?scl_prefix}texinfo-tex
+BuildRequires: texinfo-tex
 %endif
 #BuildRequires: %{?scl_prefix}systemtap-sdt-devel >= 1.3
 # For VTA guality testing
@@ -145,8 +148,10 @@ BuildRequires: %{?scl_prefix}gdb
 # Make sure glibc supports stack protector
 # Make sure glibc supports DT_GNU_HASH
 BuildRequires: glibc-devel >= 2.4.90-13
-BuildRequires: %{?scl_prefix}elfutils-devel >= 0.147
-BuildRequires: %{?scl_prefix}elfutils-libelf-devel >= 0.147
+#BuildRequires: %{?scl_prefix}elfutils-devel >= 0.147
+BuildRequires: elfutils-devel >= 0.147
+#BuildRequires: %{?scl_prefix}elfutils-libelf-devel >= 0.147
+BuildRequires: elfutils-libelf-devel >= 0.147
 %ifarch ppc ppc64 ppc64le ppc64p7 s390 s390x sparc sparcv9 alpha
 # Make sure glibc supports TFmode long double
 BuildRequires: glibc >= 2.3.90-35
@@ -156,7 +161,8 @@ BuildRequires: glibc >= 2.3.90-35
 BuildRequires: /lib/libc.so.6 /usr/lib/libc.so /lib64/libc.so.6 /usr/lib64/libc.so
 %endif
 %ifarch ia64
-BuildRequires: %{?scl_prefix}libunwind >= 0.98
+#BuildRequires: %{?scl_prefix}libunwind >= 0.98
+BuildRequires: libunwind >= 0.98
 %endif
 # Need .eh_frame ld optimizations
 # Need proper visibility support
@@ -172,12 +178,12 @@ BuildRequires: %{?scl_prefix}libunwind >= 0.98
 # Need binutils which support .cfi_sections >= 2.19.51.0.14-33
 %if 0%{?scl:1}
 %if 0%{?rhel} >= 7
-Requires: binutils >= 2.22.52.0.1
+Requires: %{?scl_prefix}binutils >= 2.22.52.0.1
 %else
 Requires: %{?scl_prefix}binutils >= 2.22.52.0.1
 %endif
 %else
-Requires: binutils >= 2.19.51.0.14-33
+Requires: %{?scl_prefix}binutils >= 2.19.51.0.14-33
 %endif
 # Make sure gdb will understand DW_FORM_strp
 Conflicts: gdb < 5.1-2
@@ -188,23 +194,33 @@ Requires: glibc >= 2.3.90-35
 %endif
 Requires: %{?scl_prefix}libgcc >= 4.1.2-43
 Requires: %{?scl_prefix}libgomp >= 4.4.4-13
-BuildRequires: %{?scl_prefix}gmp-devel >= 4.1.2-8
-BuildRequires: %{?scl_prefix}mpfr-devel >= 2.2.1
+#BuildRequires: %{?scl_prefix}gmp-devel >= 4.1.2-8
+BuildRequires: gmp-devel >= 4.1.2-8
+#BuildRequires: %{?scl_prefix}mpfr-devel >= 2.2.1
+BuildRequires: mpfr-devel >= 2.2.1
 %if 0%{?rhel} >= 7
-BuildRequires: %{?scl_prefix}libmpc-devel >= 0.8.1
+#BuildRequires: %{?scl_prefix}libmpc-devel >= 0.8.1
+BuildRequires: libmpc-devel >= 0.8.1
 %endif
 %if %{build_libstdcxx_docs}
-BuildRequires: %{?scl_prefix}libxml2
-BuildRequires: %{?scl_prefix}graphviz
+#BuildRequires: %{?scl_prefix}libxml2
+BuildRequires: libxml2
+#BuildRequires: %{?scl_prefix}graphviz
+BuildRequires: graphviz
 %if 0%{?rhel} < 7
 # doxygen BRs
-BuildRequires: %{?scl_prefix}perl
-BuildRequires: %{?scl_prefix}texlive-dvips, %{?scl_prefix}texlive-utils, %{?scl_prefix}texlive-latex
-BuildRequires: %{?scl_prefix}ghostscript
+#BuildRequires: %{?scl_prefix}perl
+BuildRequires: perl
+#BuildRequires: %{?scl_prefix}texlive-dvips, %{?scl_prefix}texlive-utils, %{?scl_prefix}texlive-latex
+BuildRequires: texlive-dvips, texlive-utils, texlive-latex
+#BuildRequires: %{?scl_prefix}ghostscript
+BuildRequires: ghostscript
 %endif
 %if 0%{?rhel} >= 7
-BuildRequires: %{?scl_prefix}doxygen >= 1.7.1
-BuildRequires: %{?scl_prefix}dblatex, %{?scl_prefix}texlive-collection-latex, %{?scl_prefix}docbook5-style-xsl
+#BuildRequires: %{?scl_prefix}doxygen >= 1.7.1
+BuildRequires: doxygen >= 1.7.1
+#BuildRequires: %{?scl_prefix}dblatex, %{?scl_prefix}texlive-collection-latex, %{?scl_prefix}docbook5-style-xsl
+BuildRequires: dblatex, texlive-collection-latex, docbook5-style-xsl
 %endif
 %endif
 %{?scl:Requires:%scl_runtime}
@@ -428,10 +444,13 @@ GNU Transactional Memory library.
 Summary: Support for compiling GCC plugins
 Group: Development/Languages
 Requires: %{?scl_prefix}gcc%{!?scl:49} = %{version}-%{release}
-Requires: %{?scl_prefix}gmp-devel >= 4.1.2-8
-Requires: %{?scl_prefix}mpfr-devel >= 2.2.1
+#Requires: %{?scl_prefix}gmp-devel >= 4.1.2-8
+Requires: gmp-devel >= 4.1.2-8
+#Requires: %{?scl_prefix}mpfr-devel >= 2.2.1
+Requires: mpfr-devel >= 2.2.1
 %if 0%{?rhel} >= 7
-Requires: %{?scl_prefix}libmpc-devel >= 0.8.1
+#Requires: %{?scl_prefix}libmpc-devel >= 0.8.1
+Requires: libmpc-devel >= 0.8.1
 %endif
 
 %description plugin-devel
