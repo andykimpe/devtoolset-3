@@ -1,4 +1,10 @@
 %{?scl:%{?scl_package:%scl_package strace}}
+
+%if 0%{?fedora} || 0%{?rhel} >= 7
+%global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
+%else
+%global brp_python_hardlink /usr/lib/rpm/redhat/brp-python-hardlink
+%endif
 %if  0%{?rhel} == 6
 %global __os_install_post /usr/lib/rpm/brp-compress \
   %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
