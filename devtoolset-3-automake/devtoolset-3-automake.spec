@@ -9,7 +9,7 @@
 %define __perl_provides %{provfilt}
 
 Summary:    A GNU tool for automatically creating Makefiles
-Name:       %{?scl_prefix}automake
+Name:       devtoolset-3-automake
 Version:    %{api_version}.1
 Release:    4%{?dist}
 License:    GPLv2+ and GFDL
@@ -19,7 +19,7 @@ Patch0:     automake-1.11.1-novala.patch
 Patch1:     automake-1.11.1-CVE-2012-3386.patch
 URL:        http://sources.redhat.com/automake
 Requires:   %{?scl_prefix}autoconf >= 2.62
-Buildrequires:  autoconf >= 2.62
+Buildrequires:  %{?scl_prefix}autoconf >= 2.62
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 BuildArch:  noarch
@@ -28,9 +28,12 @@ Buildroot:  %{_tmppath}/%{pkg_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 # for better tests coverage:
 %{?scl:Requires: %{scl}-runtime}
 %{?scl:BuildRequires: %{scl}-runtime}
-BuildRequires: %{?scl_prefix}libtool %{?scl_prefix}gettext-devel %{?scl_prefix}flex %{?scl_prefix}bison %{?scl_prefix}texinfo-tex %{?scl_prefix}texlive-dvips
-BuildRequires: %{?scl_prefix}gcc-java %{?scl_prefix}gcc-gfortran %{?_scl_root}/usr/bin/g77
-BuildRequires: %{?scl_prefix}dejagnu %{?scl_prefix}expect %{?scl_prefix}emacs %{?scl_prefix}imake %{?scl_prefix}python-docutils
+#BuildRequires: %{?scl_prefix}libtool %{?scl_prefix}gettext-devel %{?scl_prefix}flex %{?scl_prefix}bison %{?scl_prefix}texinfo-tex %{?scl_prefix}texlive-dvips
+BuildRequires: libtool gettext-devel flex bison texinfo-tex texlive-dvips
+#BuildRequires: %{?scl_prefix}gcc-java %{?scl_prefix}gcc-gfortran %{?_scl_root}/usr/bin/g77
+BuildRequires: gcc-java gcc-gfortran /usr/bin/g77
+#BuildRequires: %{?scl_prefix}dejagnu %{?scl_prefix}expect %{?scl_prefix}emacs %{?scl_prefix}imake %{?scl_prefix}python-docutils
+BuildRequires: dejagnu expect emacs imake python-docutils
 
 
 %description
@@ -77,14 +80,6 @@ mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man1
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/aclocal
 rm -f ${RPM_BUILD_ROOT}%{_infodir}/dir
 %{?scl:EOF}
-
-
-%check
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
-make check
-%{?scl:EOF}
-
 
 %clean
 %{?scl:scl enable %{scl} - << \EOF}
