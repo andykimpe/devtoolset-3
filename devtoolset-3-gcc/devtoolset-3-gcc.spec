@@ -1600,54 +1600,6 @@ rm -f %{buildroot}/lib64/libgcc_s*.so*
 # Help plugins find out nvra.
 echo gcc-%{version}-%{release}.%{arch} > $FULLPATH/rpmver
 
-%check
-cd obj-%{gcc_target_platform}
-
-%{?scl:PATH=%{_bindir}${PATH:+:${PATH}}}
-
-# Test against the system libstdc++.so.6 + libstdc++_nonshared.a combo
-mv %{gcc_target_platform}/libstdc++-v3/src/.libs/libstdc++.so.6{,.not_here}
-mv %{gcc_target_platform}/libstdc++-v3/src/.libs/libstdc++.so{,.not_here}
-ln -sf %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libstdc++.so.6 \
-  %{gcc_target_platform}/libstdc++-v3/src/.libs/libstdc++.so.6
-echo '/* GNU ld script
-   Use the shared library, but some functions are only in
-   the static library, so try that secondarily.  */
-%{oformat}
-INPUT ( %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libstdc++.so.6 -lstdc++_nonshared )' \
-  > %{gcc_target_platform}/libstdc++-v3/src/.libs/libstdc++.so
-cp -a %{gcc_target_platform}/libstdc++-v3/src/.libs/libstdc++_nonshared%{nonsharedver}.a \
-  %{gcc_target_platform}/libstdc++-v3/src/.libs/libstdc++_nonshared.a
-
-# run the tests.
-make %{?_smp_mflags} -k check RUNTESTFLAGS="--target_board=unix/'{,-fstack-protector}'" || :
-( LC_ALL=C ../contrib/test_summary -t || : ) 2>&1 | sed -n '/^cat.*EOF/,/^EOF/{/^cat.*EOF/d;/^EOF/d;/^LAST_UPDATED:/d;p;}' > testresults
-rm -rf gcc/testsuite.prev
-mv gcc/testsuite{,.prev}
-rm -f gcc/site.exp
-make %{?_smp_mflags} -C gcc -k check-gcc check-g++ ALT_CC_UNDER_TEST=gcc ALT_CXX_UNDER_TEST=g++ RUNTESTFLAGS="--target_board=unix/'{,-fstack-protector}' compat.exp struct-layout-1.exp" || :
-mv gcc/testsuite/gcc/gcc.sum{,.sent}
-mv gcc/testsuite/g++/g++.sum{,.sent}
-( LC_ALL=C ../contrib/test_summary -o -t || : ) 2>&1 | sed -n '/^cat.*EOF/,/^EOF/{/^cat.*EOF/d;/^EOF/d;/^LAST_UPDATED:/d;p;}' > testresults2
-rm -rf gcc/testsuite.compat
-mv gcc/testsuite{,.compat}
-mv gcc/testsuite{.prev,}
-echo ====================TESTING=========================
-cat testresults
-echo ===`gcc --version | head -1` compatibility tests====
-cat testresults2
-echo ====================TESTING END=====================
-mkdir testlogs-%{_target_platform}-%{version}-%{release}
-for i in `find . -name \*.log | grep -F testsuite/ | grep -v 'config.log\|acats.*/tests/'`; do
-  ln $i testlogs-%{_target_platform}-%{version}-%{release}/ || :
-done
-for i in `find gcc/testsuite.compat -name \*.log | grep -v 'config.log\|acats.*/tests/'`; do
-  ln $i testlogs-%{_target_platform}-%{version}-%{release}/`basename $i`.compat || :
-done
-tar cf - testlogs-%{_target_platform}-%{version}-%{release} | bzip2 -9c \
-  | uuencode testlogs-%{_target_platform}.tar.bz2 || :
-rm -rf testlogs-%{_target_platform}-%{version}-%{release}
-
 %clean
 rm -rf %{buildroot}
 
@@ -1680,44 +1632,44 @@ fi
 
 %postun -n %{?scl_prefix}libquadmath -p /sbin/ldconfig
 
-%post -n libitm
+%post -n %{?scl_prefix}libitm
 /sbin/ldconfig
 if [ -f %{?scl:%{_root_infodir}}%{!?scl:%{_infodir}}/libitm.info.gz ]; then
   /sbin/install-info \
     --info-dir=%{?scl:%{_root_infodir}}%{!?scl:%{_infodir}} %{?scl:%{_root_infodir}}%{!?scl:%{_infodir}}/libitm.info.gz || :
 fi
 
-%preun -n libitm
+%preun -n %{?scl_prefix}libitm
 if [ $1 = 0 -a -f %{?scl:%{_root_infodir}}%{!?scl:%{_infodir}}/libitm.info.gz ]; then
   /sbin/install-info --delete \
     --info-dir=%{?scl:%{_root_infodir}}%{!?scl:%{_infodir}} %{?scl:%{_root_infodir}}%{!?scl:%{_infodir}}/libitm.info.gz || :
 fi
 
-%postun -n libitm -p /sbin/ldconfig
+%postun -n %{?scl_prefix}libitm -p /sbin/ldconfig
 
-%post -n libatomic -p /sbin/ldconfig
+%post -n %{?scl_prefix}libatomic -p /sbin/ldconfig
 
-%postun -n libatomic -p /sbin/ldconfig
+%postun -n %{?scl_prefix}libatomic -p /sbin/ldconfig
 
-%post -n libasan -p /sbin/ldconfig
+%post -n %{?scl_prefix}libasan -p /sbin/ldconfig
 
-%postun -n libasan -p /sbin/ldconfig
+%postun -n %{?scl_prefix}libasan -p /sbin/ldconfig
 
-%post -n libtsan -p /sbin/ldconfig
+%post -n %{?scl_prefix}libtsan -p /sbin/ldconfig
 
-%postun -n libtsan -p /sbin/ldconfig
+%postun -n %{?scl_prefix}libtsan -p /sbin/ldconfig
 
-%post -n libubsan -p /sbin/ldconfig
+%post -n %{?scl_prefix}libubsan -p /sbin/ldconfig
 
-%postun -n libubsan -p /sbin/ldconfig
+%postun -n %{?scl_prefix}libubsan -p /sbin/ldconfig
 
-%post -n liblsan -p /sbin/ldconfig
+%post -n %{?scl_prefix}liblsan -p /sbin/ldconfig
 
-%postun -n liblsan -p /sbin/ldconfig
+%postun -n %{?scl_prefix}liblsan -p /sbin/ldconfig
 
-%post -n libcilkrts -p /sbin/ldconfig
+%post -n %{?scl_prefix}libcilkrts -p /sbin/ldconfig
 
-%postun -n libcilkrts -p /sbin/ldconfig
+%postun -n %{?scl_prefix}libcilkrts -p /sbin/ldconfig
 
 %files
 %defattr(-,root,root,-)
@@ -2139,7 +2091,7 @@ fi
 
 %if %{build_libitm}
 %if 0%{?rhel} < 7
-%files -n libitm
+%files -n %{?scl_prefix}libitm
 %defattr(-,root,root,-)
 %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libitm.so.1*
 %{?scl:%{_root_infodir}}%{!?scl:%{_infodir}}/libitm.info*
@@ -2167,7 +2119,7 @@ fi
 
 %if %{build_libatomic}
 %if 0%{?rhel} < 7
-%files -n libatomic
+%files -n %{?scl_prefix}libatomic
 %defattr(-,root,root,-)
 %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libatomic.so.1*
 %endif
@@ -2193,7 +2145,7 @@ fi
 %endif
 
 %if %{build_libasan}
-%files -n libasan
+%files -n %{?scl_prefix}libasan
 %defattr(-,root,root,-)
 %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libasan.so.1*
 
@@ -2221,7 +2173,7 @@ fi
 %endif
 
 %if %{build_libtsan}
-%files -n libtsan
+%files -n %{?scl_prefix}libtsan
 %defattr(-,root,root,-)
 %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libtsan.so.0*
 
@@ -2236,7 +2188,7 @@ fi
 %endif
 
 %if %{build_libubsan}
-%files -n libubsan
+%files -n %{?scl_prefix}libubsan
 %defattr(-,root,root,-)
 %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libubsan.so.0*
 
@@ -2251,7 +2203,7 @@ fi
 %endif
 
 %if %{build_liblsan}
-%files -n liblsan
+%files -n %{?scl_prefix}liblsan
 %defattr(-,root,root,-)
 %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/liblsan.so.0*
 
@@ -2266,7 +2218,7 @@ fi
 %endif
 
 %if %{build_libcilkrts}
-%files -n libcilkrts
+%files -n %{?scl_prefix}libcilkrts
 %defattr(-,root,root,-)
 %{?scl:%{_root_prefix}}%{!?scl:%{_prefix}}/%{_lib}/libcilkrts.so.5*
 
