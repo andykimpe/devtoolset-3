@@ -3,7 +3,7 @@
 %global dfcommit e90f5f98179410b7262098e4a016aa26dba598af
 %global dfshortcommit %(c=%{dfcommit}; echo ${c:0:7})
 %global dockerfiledir %{_datadir}/%{scl_prefix}dockerfiles
-%if 0%{?fedora} || 0%{?rhel} >= 7
+%if 0%{?fedora} || 0%{?rhel} >= 6
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
 %else
 %global brp_python_hardlink /usr/lib/rpm/redhat/brp-python-hardlink
