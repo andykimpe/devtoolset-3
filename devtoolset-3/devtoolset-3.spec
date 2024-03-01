@@ -74,7 +74,27 @@ Package shipping essential configuration macros to build %scl Software Collectio
 Summary: Package shipping basic toolchain applications
 Group: Applications/File
 Requires: %{scl_prefix}runtime
-Requires: %{scl_prefix}gcc %{scl_prefix}gcc-c++ %{scl_prefix}gcc-gfortran
+Requires: %{scl_prefix}liblsan
+Requires: %{scl_prefix}libtsan-devel
+Requires: %{scl_prefix}liblsan-devel 4.9.2
+Requires: %{scl_prefix}libatomic-devel 4.9.2
+Requires: %{scl_prefix}libasan 4.9.2
+Requires: %{scl_prefix}libtsan 4.9.2
+Requires: %{scl_prefix}gcc 4.9.2
+Requires: %{scl_prefix}gcc-plugin-devel 4.9.2
+Requires: %{scl_prefix}libatomic 4.9.2
+Requires: %{scl_prefix}libitm-devel 4.9.2
+Requires: %{scl_prefix}gcc-gfortran 4.9.2
+Requires: %{scl_prefix}libcilkrts-devel 4.9.2
+Requires: %{scl_prefix}gcc-c++ 4.9.2
+Requires: %{scl_prefix}libitm 4.9.2
+Requires: %{scl_prefix}libquadmath-devel 4.9.2
+Requires: %{scl_prefix}libasan-devel 4.9.2
+Requires: %{scl_prefix}libstdc++-docs 4.9.2
+Requires: %{scl_prefix}libubsan 4.9.2
+Requires: %{scl_prefix}libubsan-devel 4.9.2
+Requires: %{scl_prefix}libcilkrts 4.9.2
+Requires: %{scl_prefix}libstdc++-devel 4.9.2
 Requires: %{scl_prefix}binutils %{scl_prefix}gdb %{scl_prefix}strace
 Requires: %{scl_prefix}dwz %{scl_prefix}elfutils %{scl_prefix}memstomp
 Requires: %{scl_prefix}ltrace
