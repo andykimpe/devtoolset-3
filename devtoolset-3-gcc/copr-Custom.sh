@@ -12,4 +12,4 @@ wget http://archive.kernel.org/centos-vault/centos/6/sclo/Source/rh/devtoolset-3
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
 rm -rf *.spec
-wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-gcc/devtoolset-3-gcc
+wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-gcc/devtoolset-3-gcc.spec
