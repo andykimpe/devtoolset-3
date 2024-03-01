@@ -106,7 +106,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: binutils >= 2.19.51.0.14-33
 # While gcc doesn't include statically linked binaries, during testing
 # -static is used several times.
-BuildRequires: glibc-static
+BuildRequires: %{?scl_prefix}glibc-static
 %if 0%{?scl:1}
 %if 0%{?rhel} >= 7
 BuildRequires: binutils >= 2.22.52.0.1
@@ -116,30 +116,30 @@ BuildRequires: %{?scl_prefix}binutils >= 2.22.52.0.1
 # For testing
 BuildRequires: %{?scl_prefix}gdb >= 7.4.50
 %endif
-BuildRequires: zlib-devel, gettext, dejagnu, bison, flex, texinfo, sharutils
-BuildRequires: /usr/bin/pod2man
+BuildRequires: %{?scl_prefix}zlib-devel, %{?scl_prefix}gettext, %{?scl_prefix}dejagnu, %{?scl_prefix}bison, %{?scl_prefix}flex, %{?scl_prefix}texinfo, %{?scl_prefix}sharutils
+BuildRequires: %{?scl_prefix}perl
 %if 0%{?rhel} >= 7
-BuildRequires: texinfo-tex
+BuildRequires: %{?scl_prefix}texinfo-tex
 %endif
-#BuildRequires: systemtap-sdt-devel >= 1.3
+#BuildRequires: %{?scl_prefix}systemtap-sdt-devel >= 1.3
 # For VTA guality testing
-BuildRequires: gdb
+BuildRequires: %{?scl_prefix}gdb
 # Make sure pthread.h doesn't contain __thread tokens
 # Make sure glibc supports stack protector
 # Make sure glibc supports DT_GNU_HASH
-BuildRequires: glibc-devel >= 2.4.90-13
-BuildRequires: elfutils-devel >= 0.147
-BuildRequires: elfutils-libelf-devel >= 0.147
+BuildRequires: %{?scl_prefix}glibc-devel >= 2.4.90-13
+BuildRequires: %{?scl_prefix}elfutils-devel >= 0.147
+BuildRequires: %{?scl_prefix}elfutils-libelf-devel >= 0.147
 %ifarch ppc ppc64 ppc64le ppc64p7 s390 s390x sparc sparcv9 alpha
 # Make sure glibc supports TFmode long double
-BuildRequires: glibc >= 2.3.90-35
+BuildRequires: %{?scl_prefix}glibc >= 2.3.90-35
 %endif
 %ifarch %{multilib_64_archs} sparcv9 ppc
 # Ensure glibc{,-devel} is installed for both multilib arches
 BuildRequires: /lib/libc.so.6 /usr/lib/libc.so /lib64/libc.so.6 /usr/lib64/libc.so
 %endif
 %ifarch ia64
-BuildRequires: libunwind >= 0.98
+BuildRequires: %{?scl_prefix}libunwind >= 0.98
 %endif
 # Need .eh_frame ld optimizations
 # Need proper visibility support
@@ -164,30 +164,30 @@ Requires: binutils >= 2.19.51.0.14-33
 %endif
 # Make sure gdb will understand DW_FORM_strp
 Conflicts: gdb < 5.1-2
-Requires: glibc-devel >= 2.2.90-12
+Requires: %{?scl_prefix}glibc-devel >= 2.2.90-12
 %ifarch ppc ppc64 ppc64le ppc64p7 s390 s390x sparc sparcv9 alpha
 # Make sure glibc supports TFmode long double
-Requires: glibc >= 2.3.90-35
+Requires: %{?scl_prefix}glibc >= 2.3.90-35
 %endif
-Requires: libgcc >= 4.1.2-43
-Requires: libgomp >= 4.4.4-13
-BuildRequires: gmp-devel >= 4.1.2-8
-BuildRequires: mpfr-devel >= 2.2.1
+Requires: %{?scl_prefix}libgcc >= 4.1.2-43
+Requires: %{?scl_prefix}libgomp >= 4.4.4-13
+BuildRequires: %{?scl_prefix}gmp-devel >= 4.1.2-8
+BuildRequires: %{?scl_prefix}mpfr-devel >= 2.2.1
 %if 0%{?rhel} >= 7
-BuildRequires: libmpc-devel >= 0.8.1
+BuildRequires: %{?scl_prefix}libmpc-devel >= 0.8.1
 %endif
 %if %{build_libstdcxx_docs}
-BuildRequires: libxml2
-BuildRequires: graphviz
+BuildRequires: %{?scl_prefix}libxml2
+BuildRequires: %{?scl_prefix}graphviz
 %if 0%{?rhel} < 7
 # doxygen BRs
-BuildRequires: perl
-BuildRequires: texlive-dvips, texlive-utils, texlive-latex
-BuildRequires: ghostscript
+BuildRequires: %{?scl_prefix}perl
+BuildRequires: %{?scl_prefix}texlive-dvips, %{?scl_prefix}texlive-utils, %{?scl_prefix}texlive-latex
+BuildRequires: %{?scl_prefix}ghostscript
 %endif
 %if 0%{?rhel} >= 7
-BuildRequires: doxygen >= 1.7.1
-BuildRequires: dblatex, texlive-collection-latex, docbook5-style-xsl
+BuildRequires: %{?scl_prefix}doxygen >= 1.7.1
+BuildRequires: %{?scl_prefix}dblatex, %{?scl_prefix}texlive-collection-latex, %{?scl_prefix}docbook5-style-xsl
 %endif
 %endif
 %{?scl:Requires:%scl_runtime}
@@ -292,9 +292,9 @@ Summary: C++ support for GCC version 4.9
 Group: Development/Languages
 Requires: %{?scl_prefix}gcc%{!?scl:49} = %{version}-%{release}
 %if 0%{?rhel} >= 7
-Requires: libstdc++
+Requires: %{?scl_prefix}libstdc++
 %else
-Requires: libstdc++ >= 4.4.4-13
+Requires: %{?scl_prefix}libstdc++ >= 4.4.4-13
 %endif
 Requires: %{?scl_prefix}libstdc++%{!?scl:49}-devel = %{version}-%{release}
 Autoreq: true
@@ -309,11 +309,11 @@ and a lot of support for the upcoming C++ specification.
 Summary: Header files and libraries for C++ development
 Group: Development/Libraries
 %if 0%{?rhel} >= 7
-Requires: libstdc++
+Requires: %{?scl_prefix}libstdc++
 %else
-Requires: libstdc++ >= 4.4.4-13
+Requires: %{?scl_prefix}libstdc++ >= 4.4.4-13
 %endif
-Requires: libstdc++%{?_isa}
+Requires: %{?scl_prefix}libstdc++%{?_isa}
 Autoreq: true
 Autoprov: true
 
@@ -336,20 +336,20 @@ Summary: Fortran support for GCC 4.9
 Group: Development/Languages
 Requires: %{?scl_prefix}gcc%{!?scl:49} = %{version}-%{release}
 %if 0%{?rhel} >= 7
-Requires: libgfortran
+Requires: %{?scl_prefix}libgfortran
 %else
-Requires: libgfortran >= 4.4.4-13
+Requires: %{?scl_prefix}libgfortran >= 4.4.4-13
 %endif
 %if %{build_libquadmath}
 %if 0%{!?scl:1}
 %if 0%{?rhel} >= 7
-Requires: libquadmath
+Requires: %{?scl_prefix}libquadmath
 %else
 Requires: %{?scl_prefix}libquadmath = %{version}-%{release}
 %endif
 %else
 %if 0%{?rhel} >= 7
-Requires: libquadmath
+Requires: %{?scl_prefix}libquadmath
 %endif
 %endif
 Requires: %{?scl_prefix}libquadmath-devel = %{version}-%{release}
@@ -378,7 +378,7 @@ Group: Development/Libraries
 Requires: %{?scl_prefix}libquadmath = %{version}-%{release}
 %else
 %if 0%{?rhel} >= 7
-Requires: libquadmath
+Requires: %{?scl_prefix}libquadmath
 %endif
 %endif
 Requires: %{?scl_prefix}gcc%{!?scl:49} = %{version}-%{release}
@@ -387,20 +387,20 @@ Requires: %{?scl_prefix}gcc%{!?scl:49} = %{version}-%{release}
 This package contains headers for building Fortran programs using
 REAL*16 and programs using __float128 math.
 
-%package -n libitm
+%package -n %{?scl_prefix}libitm
 Summary: The GNU Transactional Memory library
 Group: System Environment/Libraries
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
-%description -n libitm
+%description -n %{?scl_prefix}libitm
 This package contains the GNU Transactional Memory library
 which is a GCC transactional memory support runtime library.
 
 %package -n %{?scl_prefix}libitm-devel
 Summary: The GNU Transactional Memory support
 Group: Development/Libraries
-Requires: libitm >= 4.7.0-1
+Requires: %{?scl_prefix}libitm >= 4.7.0-1
 Requires: %{?scl_prefix}gcc%{!?scl:49} = %{version}-%{release}
 
 %description -n %{?scl_prefix}libitm-devel
@@ -411,10 +411,10 @@ GNU Transactional Memory library.
 Summary: Support for compiling GCC plugins
 Group: Development/Languages
 Requires: %{?scl_prefix}gcc%{!?scl:49} = %{version}-%{release}
-Requires: gmp-devel >= 4.1.2-8
-Requires: mpfr-devel >= 2.2.1
+Requires: %{?scl_prefix}gmp-devel >= 4.1.2-8
+Requires: %{?scl_prefix}mpfr-devel >= 2.2.1
 %if 0%{?rhel} >= 7
-Requires: libmpc-devel >= 0.8.1
+Requires: %{?scl_prefix}libmpc-devel >= 0.8.1
 %endif
 
 %description plugin-devel
@@ -422,13 +422,13 @@ This package contains header files and other support files
 for compiling GCC 4.9 plugins.  The GCC plugin ABI is currently
 not stable, so plugins must be rebuilt any time GCC is updated.
 
-%package -n libatomic
+%package -n %{?scl_prefix}libatomic
 Summary: The GNU Atomic library
 Group: System Environment/Libraries
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
-%description -n libatomic
+%description -n %{?scl_prefix}libatomic
 This package contains the GNU Atomic library
 which is a GCC support runtime library for atomic operations not supported
 by hardware.
@@ -436,96 +436,96 @@ by hardware.
 %package -n %{?scl_prefix}libatomic-devel
 Summary: The GNU Atomic static library
 Group: Development/Libraries
-Requires: libatomic >= 4.8.0
+Requires: %{?scl_prefix}libatomic >= 4.8.0
 
 %description -n %{?scl_prefix}libatomic-devel
 This package contains GNU Atomic static libraries.
 
-%package -n libasan
+%package -n %{?scl_prefix}libasan
 Summary: The Address Sanitizer runtime library
 Group: System Environment/Libraries
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
-%description -n libasan
+%description -n %{?scl_prefix}libasan
 This package contains the Address Sanitizer library
 which is used for -fsanitize=address instrumented programs.
 
 %package -n %{?scl_prefix}libasan-devel
 Summary: The Address Sanitizer static library
 Group: Development/Libraries
-Requires: libasan >= 4.9.0
+Requires: %{?scl_prefix}libasan >= 4.9.0
 
 %description -n %{?scl_prefix}libasan-devel
 This package contains Address Sanitizer static runtime library.
 
-%package -n libtsan
+%package -n %{?scl_prefix}libtsan
 Summary: The Thread Sanitizer runtime library
 Group: System Environment/Libraries
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
-%description -n libtsan
+%description -n %{?scl_prefix}libtsan
 This package contains the Thread Sanitizer library
 which is used for -fsanitize=thread instrumented programs.
 
 %package -n %{?scl_prefix}libtsan-devel
 Summary: The Thread Sanitizer static library
 Group: Development/Libraries
-Requires: libtsan >= 4.9.0
+Requires: %{?scl_prefix}libtsan >= 4.9.0
 
 %description -n %{?scl_prefix}libtsan-devel
 This package contains Thread Sanitizer static runtime library.
 
-%package -n libubsan
+%package -n %{?scl_prefix}libubsan
 Summary: The Undefined Behavior Sanitizer runtime library
 Group: System Environment/Libraries
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
-%description -n libubsan
+%description -n %{?scl_prefix}libubsan
 This package contains the Undefined Behavior Sanitizer library
 which is used for -fsanitize=undefined instrumented programs.
 
 %package -n %{?scl_prefix}libubsan-devel
 Summary: The Undefined Behavior Sanitizer static library
 Group: Development/Libraries
-Requires: libubsan >= 4.9.0
+Requires: %{?scl_prefix}libubsan >= 4.9.0
 
 %description -n %{?scl_prefix}libubsan-devel
 This package contains Undefined behavior Sanitizer static runtime library.
 
-%package -n liblsan
+%package -n %{?scl_prefix}liblsan
 Summary: The Leak Sanitizer runtime library
 Group: System Environment/Libraries
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
-%description -n liblsan
+%description -n %{?scl_prefix}liblsan
 This package contains the Leak Sanitizer library
 which is used for -fsanitize=leak instrumented programs.
 
 %package -n %{?scl_prefix}liblsan-devel
 Summary: The Leak Sanitizer static library
 Group: Development/Libraries
-Requires: liblsan >= 4.9.0
+Requires: %{?scl_prefix}liblsan >= 4.9.0
 
 %description -n %{?scl_prefix}liblsan-devel
 This package contains Leak Sanitizer static runtime library.
 
-%package -n libcilkrts
+%package -n %{?scl_prefix}libcilkrts
 Summary: The Cilk+ runtime library
 Group: System Environment/Libraries
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 
-%description -n libcilkrts
+%description -n %{?scl_prefix}libcilkrts
 This package contains the Cilk+ runtime library.
 
 %package -n %{?scl_prefix}libcilkrts-devel
 Summary: The Cilk+ static runtime library
 Group: Development/Libraries
-Requires: libcilkrts >= 4.9.0
+Requires: %{?scl_prefix}libcilkrts >= 4.9.0
 
 %description -n %{?scl_prefix}libcilkrts-devel
 This package contains the Cilk+ static runtime library.
