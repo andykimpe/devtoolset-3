@@ -75,7 +75,7 @@
 %global multilib_32_arch i686
 %endif
 Summary: GCC version 4.9
-Name: %{?scl_prefix}gcc
+Name: devtoolset-3-gcc
 #Name: %{?scl_prefix}gcc%{!?scl:49}
 Version: %{gcc_version}
 Release: %{gcc_release}.2%{?dist}
