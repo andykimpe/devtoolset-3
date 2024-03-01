@@ -5,11 +5,11 @@
 # Mock chroot: epal-6-x86_64
 # Build dependencies: wget
 # #! /bin/sh -x
-# wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-automake/copr-Custom.sh -O copr-Custom.sh
+# wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-automake16/copr-Custom.sh -O copr-Custom.sh
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
 wget http://archive.kernel.org/centos-vault/centos/6/os/Source/SPackages/automake16-1.6.3-18.el6.1.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
 rm -rf *.spec
-wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-automake/devtoolset-3-automake.spec
+wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-automake/devtoolset-3-automake16.spec
