@@ -432,8 +432,8 @@ Provides: %{?scl_prefix}%{pkg_name}-headers(%{_target_cpu})
 %ifarch x86_64
 # If both -m32 and -m64 is to be supported on AMD64, x86_64 glibc-headers
 # have to be installed, not i586 ones.
-Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i586)
-Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i686)
+#Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i586)
+#Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i686)
 %endif
 #Requires(pre): %{?scl_prefix}kernel-headers
 Requires(pre): kernel-headers
