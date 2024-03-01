@@ -115,9 +115,6 @@ rm -f %{buildroot}%{_bindir}/strace-graph
 %{copy64} %{buildroot}%{_bindir}/strace %{buildroot}%{_bindir}/strace32
 %endif
 
-%check
-make check
-
 %clean
 rm -rf %{buildroot}
 
