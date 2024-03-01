@@ -1,12 +1,29 @@
 %{?scl:%scl_package zlib}
 %{!?scl:%global pkg_name %{name}}
+%if 0%{?fedora} || 0%{?rhel} >= 7
+%global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
+%else
+%global brp_python_hardlink /usr/lib/rpm/redhat/brp-python-hardlink
+%endif
+%if  0%{?rhel} == 6
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump}
+%else
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump} \
+  %{brp_python_hardlink}
+%endif
 
 Summary: The zlib compression and decompression library
-Name: %{?scl_prefix}zlib
+Name: devtoolset-3-zlib
 Version: 1.2.3
 Release: 29%{?dist}
 Group: System Environment/Libraries
-Source: http://www.zlib.net/zlib-%{version}.tar.gz
+Source: https://www.zlib.net/fossils/zlib-1.2.3.tar.gz
 Source1: zlib.pc.in
 Patch3: zlib-1.2.3-autotools.patch
 Patch6: minizip-1.2.3-malloc.patch
@@ -33,7 +50,7 @@ library which is used by many different programs.
 %package devel
 Summary: Header files and libraries for Zlib development
 Group: Development/Libraries
-Requires: %{?scl_prefix}%{name} = %{version}-%{release}
+Requires: %{?scl_prefix}zlib = %{version}-%{release}
 
 
 %description devel
@@ -45,7 +62,7 @@ library.
 %package static
 Summary: Static libraries for Zlib development
 Group: Development/Libraries
-Requires: %{?scl_prefix}%{name}-devel = %{version}-%{release}
+Requires: %{?scl_prefix}zlib-devel = %{version}-%{release}
 
 
 %description static
@@ -108,13 +125,6 @@ make %{?_smp_mflags}
 %{?scl:EOF}
 
 
-%check
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
-make test -f Makefile.old
-%{?scl:EOF}
-
-
 %install
 %{?scl:scl enable %{scl} - << \EOF}
 set -ex
@@ -131,7 +141,7 @@ ln -sf $reldir/$(basename $oldlink) $RPM_BUILD_ROOT%{_libdir}/libz.so
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
 
-    %{?scl:EOF}
+%{?scl:EOF}
 
 
 %clean
@@ -141,27 +151,31 @@ rm -rf ${RPM_BUILD_ROOT}
 %{?scl:EOF}
 
 
-%post -p /sbin/ldconfig
+%post
 %{?scl:scl enable %{scl} - << \EOF}
 set -ex
+/sbin/ldconfig
 %{?scl:EOF}
 
 
-%postun -p /sbin/ldconfig
+%postun
 %{?scl:scl enable %{scl} - << \EOF}
 set -ex
+/sbin/ldconfig
 %{?scl:EOF}
 
 
-%post -n minizip -p /sbin/ldconfig
+%post -n minizip
 %{?scl:scl enable %{scl} - << \EOF}
 set -ex
+/sbin/ldconfig
 %{?scl:EOF}
 
 
-%postun -n minizip -p /sbin/ldconfig
+%postun -n minizip
 %{?scl:scl enable %{scl} - << \EOF}
 set -ex
+/sbin/ldconfig
 %{?scl:EOF}
 
 
