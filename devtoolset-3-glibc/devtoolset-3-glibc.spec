@@ -1586,7 +1586,7 @@ rm -f *.filelist*
 %defattr(-,root,root)
 
 
-%files -f nscd.filelist -n nscd
+%files -f nscd.filelist -n %{?scl_prefix}nscd
 %defattr(-,root,root)
 %config(noreplace) /etc/nscd.conf
 %config /etc/rc.d/init.d/nscd
