@@ -546,7 +546,6 @@ package or when debugging this package.
 
 
 %prep
-%{?scl:scl enable %{scl} - << \EOF}
 set -ex
 %setup -q -n %{glibcsrcdir} -b1
 %patch0 -E -p1
@@ -805,15 +804,14 @@ rm -f sysdeps/powerpc/powerpc32/power4/hp-timing.[ch]
 %endif
 
 find . -type f -size 0 -o -name "*.orig" -exec rm -f {} \;
-cat > find_provides.sh <<EOF
+cat > find_provides.sh <<EOG
 #!/bin/sh
 /usr/lib/rpm/find-provides | grep -v GLIBC_PRIVATE
 exit 0
-EOF
+EOG
 chmod +x find_provides.sh
 touch `find . -name configure`
 touch locale/programs/*-kw.h
-%{?scl:EOF}
 
 
 %build
