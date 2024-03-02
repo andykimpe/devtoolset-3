@@ -5,11 +5,11 @@
 # Mock chroot: epal-6-x86_64
 # Build dependencies: wget
 # #! /bin/sh -x
-# wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-eclipse-cdt/copr-Custom.sh -O copr-Custom.sh
+# wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-eclipse-egit/copr-Custom.sh -O copr-Custom.sh
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
-wget http://archive.kernel.org/centos-vault/centos/6/sclo/Source/rh/devtoolset-3/devtoolset-3-eclipse-cdt-8.6.0-1.bootstrap1.el6.src.rpm
+wget http://archive.kernel.org/centos-vault/centos/6/sclo/Source/rh/devtoolset-3/devtoolset-3-eclipse-egit-3.6.1-3.bootstrap1.el6.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
 rm -rf *.spec
-wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-eclipse-cdt/devtoolset-3-eclipse-cdt.spec
+wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-eclipse-egit/devtoolset-3-eclipse-egit.spec
