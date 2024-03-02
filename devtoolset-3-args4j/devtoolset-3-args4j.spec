@@ -26,7 +26,7 @@ Release:        3%{?dist}
 Summary:        Java command line arguments parser
 License:        MIT
 URL:            http://args4j.kohsuke.org/
-Source0:        https://github.com/kohsuke/%{pkg_name}/archive/%{pkg_name}-site-%{version}.tar.gz
+Source0:        https://github.com/kohsuke/args4j/archive/%args4j-site-%{version}.tar.gz
 
 BuildArch:      noarch
 
@@ -61,19 +61,19 @@ Summary:        args4j parent POM
 This package contains parent POM for args4j project.
 
 %package javadoc
-Summary:        API documentation for %{pkg_name}
+Summary:        API documentation for args4j
 
 %description javadoc
-This package contains the API documentation for %{pkg_name}.
+This package contains the API documentation for args4j.
 
 %prep
-%setup -q -n %{pkg_name}-%{pkg_name}-site-%{version}
+%setup -q -n args4j-args4j-site-%{version}
 
 # removing classpath addition
-sed -i 's/<addClasspath>true/<addClasspath>false/g' %{pkg_name}-tools/pom.xml
+sed -i 's/<addClasspath>true/<addClasspath>false/g' args4j-tools/pom.xml
 
 # fix ant group id
-sed -i 's/<groupId>ant/<groupId>org.apache.ant/g' %{pkg_name}-tools/pom.xml
+sed -i 's/<groupId>ant/<groupId>org.apache.ant/g' args4j-tools/pom.xml
 
 # removing bundled stuff
 find -name '*.class' -exec rm -f '{}' \;
@@ -81,23 +81,23 @@ find -name '*.jar' -exec rm -f '{}' \;
 
 %{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
 # XMvn cannot generate requires on dependecies with scope "system"
-%pom_xpath_remove "pom:profile[pom:id[text()='jdk-tools-jar']]" %{pkg_name}-tools
-%pom_add_dep com.sun:tools %{pkg_name}-tools
+%pom_xpath_remove "pom:profile[pom:id[text()='jdk-tools-jar']]" args4j-tools
+%pom_add_dep com.sun:tools args4j-tools
 
 # we don't need these now
 %pom_disable_module args4j-maven-plugin
 %pom_disable_module args4j-maven-plugin-example
 
 # Avoid koshuke-pom and mockito
-%pom_remove_dep org.mockito:mockito-all %{pkg_name}-tools
+%pom_remove_dep org.mockito:mockito-all args4j-tools
 %pom_remove_parent
 
 # put args4j-tools and parent POM to separate subpackages
-%mvn_package :args4j-tools::{}: %{pkg_name}-tools
-%mvn_package :args4j-site::{}: %{pkg_name}-parent
+%mvn_package :args4j-tools::{}: args4j-tools
+%mvn_package :args4j-site::{}: args4j-parent
 
 # install also compat symlinks
-%mvn_file ":{*}" %{pkg_name}/@1 @1
+%mvn_file ":{*}" args4j/@1 @1
 %{?scl:EOF}
 
 %build
@@ -111,16 +111,16 @@ find -name '*.jar' -exec rm -f '{}' \;
 %{?scl:EOF}
 
 %files -f .mfiles
-%dir %{_javadir}/%{pkg_name}
-%doc %{pkg_name}/LICENSE.txt
+%dir %{_javadir}/args4j
+%doc args4j/LICENSE.txt
 
-%files tools -f .mfiles-%{pkg_name}-tools
+%files tools -f .mfiles-args4j-tools
 
-%files parent -f .mfiles-%{pkg_name}-parent
-%doc %{pkg_name}/LICENSE.txt
+%files parent -f .mfiles-args4j-parent
+%doc args4j/LICENSE.txt
 
 %files javadoc -f .mfiles-javadoc
-%doc %{pkg_name}/LICENSE.txt
+%doc args4j/LICENSE.txt
 
 %changelog
 * Thu Jan 15 2015 Roland Grunberg <rgrunber@redhat.com> - 2.0.30-3
