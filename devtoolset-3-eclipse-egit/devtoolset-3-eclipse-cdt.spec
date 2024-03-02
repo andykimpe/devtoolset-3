@@ -4,11 +4,29 @@
 %global version_suffix 201501031845-r
 
 %{?scl:%scl_package eclipse-egit}
-%{!?scl:%global pkg_name %{name}}
+%{!?scl:%global pkg_name eclipse-egit}
+
+%if 0%{?fedora} || 0%{?rhel} >= 7
+%global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
+%else
+%global brp_python_hardlink /usr/lib/rpm/redhat/brp-python-hardlink
+%endif
+%if  0%{?rhel} == 6
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump}
+%else
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump} \
+  %{brp_python_hardlink}
+%endif
 
 %{?java_common_find_provides_and_requires}
 
-Name:             %{?scl_prefix}eclipse-egit
+Name:             devtoolset-3-eclipse-cdt
 Version:          3.6.1
 Release:          3.bootstrap1%{?dist}
 Summary:          Eclipse Git Integration
