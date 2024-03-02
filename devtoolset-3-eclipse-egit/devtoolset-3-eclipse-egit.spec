@@ -26,7 +26,7 @@
 
 %{?java_common_find_provides_and_requires}
 
-Name:             devtoolset-3-eclipse-cdt
+Name:             devtoolset-3-eclipse-egit
 Version:          3.6.1
 Release:          3.bootstrap1%{?dist}
 Summary:          Eclipse Git Integration
