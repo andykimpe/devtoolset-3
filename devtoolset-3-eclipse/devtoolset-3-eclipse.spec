@@ -1,5 +1,24 @@
 %{?scl:%scl_package eclipse}
 %{!?scl:%global pkg_name %{name}}
+
+%if 0%{?fedora} || 0%{?rhel} >= 7
+%global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
+%else
+%global brp_python_hardlink /usr/lib/rpm/redhat/brp-python-hardlink
+%endif
+%if  0%{?rhel} == 6
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump}
+%else
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump} \
+  %{brp_python_hardlink}
+%endif
+
 %{?java_common_find_provides_and_requires}
 
 # Set to 1 to build Eclipse without dependency to eclipse-pde
@@ -37,7 +56,7 @@ Epoch:                  1
 %define __jar_repack %{nil}
 
 Summary:        An open, extensible IDE
-Name:           %{?scl_prefix}eclipse
+Name:           devtoolset-3-eclipse
 Version:        %{eclipse_version}
 Release:        4.bootstrap2%{?dist}
 License:        EPL
