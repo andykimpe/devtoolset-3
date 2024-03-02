@@ -1,14 +1,33 @@
 %global pkg_name decentxml
 %{?scl:%scl_package %{pkg_name}}
+
+%if 0%{?fedora} || 0%{?rhel} >= 7
+%global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
+%else
+%global brp_python_hardlink /usr/lib/rpm/redhat/brp-python-hardlink
+%endif
+%if  0%{?rhel} == 6
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump}
+%else
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump} \
+  %{brp_python_hardlink}
+%endif
+
 %{?java_common_find_provides_and_requires}
 
-Name:             %{?scl_prefix}decentxml
+Name:             devtoolset-3-decentxml
 Version:          1.4
 Release:          10%{?dist}
 Summary:          XML parser optimized for round-tripping and code reuse
 License:          BSD
 Group:            Development/Libraries
-URL:              http://code.google.com/p/%{pkg_name}
+URL:              http://code.google.com/p/decentxml
 Source0:          https://decentxml.googlecode.com/files/decentxml-1.4-src.zip
 # for running w3c conformance test suite
 Source1:          http://www.w3.org/XML/Test/xmlts20031210.zip
@@ -30,24 +49,24 @@ features being:
  * XML 1.1 compatible
 
 %package javadoc
-Summary:          API documentation for %{pkg_name}
+Summary:          API documentation for decentxml
 Group:            Documentation
 
 
 %description javadoc
-This package contains the API documentation for %{pkg_name}.
+This package contains the API documentation for decentxml.
 
 %prep
-%setup -q -n %{pkg_name}-%{version}
+%setup -q -n decentxml-%{version}
 # we are looking for xml conformance data one lever above so unzip
 # here and symlink there
 unzip %{SOURCE1}
-ln -sf %{pkg_name}-%{version}/xmlconf ../xmlconf
+ln -sf decentxml-%{version}/xmlconf ../xmlconf
 sed -i -e "s|junit-dep|junit|g" pom.xml
 
 %build
 %{?scl:scl enable %{scl_maven} %{scl} - << "EOF"}
-%mvn_file  : %{pkg_name}
+%mvn_file  : decentxml
 %mvn_build
 %{?scl:EOF}
 
