@@ -1,5 +1,5 @@
 %{?scl:%scl_package eclipse}
-%{!?scl:%global pkg_name %{name}}
+%{!?scl:%global pkg_name eclipse}
 
 %if 0%{?fedora} || 0%{?rhel} >= 7
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
@@ -71,75 +71,75 @@ Source1:        http://git.eclipse.org/c/linuxtools/org.eclipse.linuxtools.eclip
 # +javax.el
 # -org.apache.jasper.glassfish
 # +org.glassfish.web.javax.servlet.jsp
-Patch0:         %{pkg_name}-help-doc-adjust-dependencies.patch
+Patch0:         eclipse-help-doc-adjust-dependencies.patch
 
 # -org.w3c.dom.smil
 # -javax.annotation
 # +org.apache.geronimo.specs.geronimo-annotation_1.1_spec
-Patch1:         %{pkg_name}-remove-w3c-smil-and-use-geronimo.patch
+Patch1:         eclipse-remove-w3c-smil-and-use-geronimo.patch
 
 # Eclipse should not include source for dependencies that are not supplied by this package
 # and should not include source for bundles that are not relevant to our platform
-Patch2:         %{pkg_name}-no-source-for-dependencies.patch
+Patch2:         eclipse-no-source-for-dependencies.patch
 
 # This has too many dependencies. We will not build it.
-Patch3:         %{pkg_name}-remove-weaving.patch
+Patch3:         eclipse-remove-weaving.patch
 
 # https://bugs.eclipse.org/bugs/show_bug.cgi?id=377515
-Patch4:        %{pkg_name}-p2-pick-up-renamed-jars.patch
+Patch4:        eclipse-p2-pick-up-renamed-jars.patch
 
 # Patch for this was contributed. Unlikely to be released.
-Patch5:        %{pkg_name}-ignore-version-when-calculating-home.patch
+Patch5:        eclipse-ignore-version-when-calculating-home.patch
 
 # CBI uses timestamps generated from the git commits. We don't have the repo,
 # just source, and we don't want additional dependencies.
-Patch6:        %{pkg_name}-remove-jgit-provider.patch
+Patch6:        eclipse-remove-jgit-provider.patch
 
 # This is for Fedora purposes to have working eclipse-pdebuild script.
-Patch7:        %{pkg_name}-pdebuild-add-target.patch
+Patch7:        eclipse-pdebuild-add-target.patch
 
 # Strict Fedora purpose, too. We can't build entire product, just base
 # and JDT and SDK as update sites, then we can assemble our own packages.
 # https://bugs.eclipse.org/bugs/show_bug.cgi?id=386670
 # additional poms are a part of e-b
-Patch8:        %{pkg_name}-change-build-packagings.patch
+Patch8:        eclipse-change-build-packagings.patch
 
-Patch9:        %{pkg_name}-test-support.patch
+Patch9:        eclipse-test-support.patch
 
-Patch10:        %{pkg_name}-secondary-arches.patch
+Patch10:        eclipse-secondary-arches.patch
 
-Patch11:        %{pkg_name}-debug-symbols.patch
+Patch11:        eclipse-debug-symbols.patch
 
-Patch12:        %{pkg_name}-fix-comaptibility-class.patch
+Patch12:        eclipse-fix-comaptibility-class.patch
 
-Patch13:        %{pkg_name}-bug-903537.patch
+Patch13:        eclipse-bug-903537.patch
 
-Patch14:        %{pkg_name}-jetty-9.patch
+Patch14:        eclipse-jetty-9.patch
 
-Patch15:        %{pkg_name}-fix-startup-class-refresh.patch
+Patch15:        eclipse-fix-startup-class-refresh.patch
 
 # https://bugs.eclipse.org/bugs/show_bug.cgi?id=408138
-Patch16:        %{pkg_name}-fix-dropins.patch
+Patch16:        eclipse-fix-dropins.patch
 
-Patch17:        %{pkg_name}-bug-386377.patch
-Patch18:        %{pkg_name}-servlet-3.1.patch
-Patch19:        %{pkg_name}-lucene-4.patch
-Patch20:        %{pkg_name}-no-target-platform.patch
+Patch17:        eclipse-bug-386377.patch
+Patch18:        eclipse-servlet-3.1.patch
+Patch19:        eclipse-lucene-4.patch
+Patch20:        eclipse-no-target-platform.patch
 
 # org.mockito -> org.mockito.mockito-core
-Patch21:        %{pkg_name}-mockito.patch
+Patch21:        eclipse-mockito.patch
 
-Patch22:        %{pkg_name}-policy-comparators.patch
+Patch22:        eclipse-policy-comparators.patch
 
-#Patch23:        %{pkg_name}-webkit2-support.patch
+#Patch23:        eclipse-webkit2-support.patch
 
-Patch25:        %{pkg_name}-support-symlink-bundles.patch
+Patch25:        eclipse-support-symlink-bundles.patch
 
 # Feature plugin definitions lock onto version of plugin at build-time.
 # If plugin is external, updating it breaks the feature. (version changes)
 # Workaround : Change <plugin> definition to a 'requirement' and list
 # the plugin in the top-level category so it still gets bundled.
-Patch26:        %{pkg_name}-feature-plugins-to-category-ius.patch
+Patch26:        eclipse-feature-plugins-to-category-ius.patch
 
 # Patches for DTS
 Patch28:        eclipse-disable-mockito-tests.patch
@@ -873,39 +873,39 @@ if [ -x /usr/bin/gtk-update-icon-cache ]; then
 fi
 
 %files swt
-%{_libdir}/%{pkg_name}/notice.html
-%{_libdir}/%{pkg_name}/eclipse.ini
-%{_libdir}/%{pkg_name}/epl-v10.html
-%{_libdir}/%{pkg_name}/plugins/org.eclipse.swt_*
-%{_libdir}/%{pkg_name}/plugins/org.eclipse.swt.gtk.linux.*
-%{_libdir}/%{pkg_name}/swt.jar
+%{_libdir}/eclipse/notice.html
+%{_libdir}/eclipse/eclipse.ini
+%{_libdir}/eclipse/epl-v10.html
+%{_libdir}/eclipse/plugins/org.eclipse.swt_*
+%{_libdir}/eclipse/plugins/org.eclipse.swt.gtk.linux.*
+%{_libdir}/eclipse/swt.jar
 %{_jnidir}/swt.jar
 
 %files platform -f .mfiles-platform
-%{_bindir}/%{pkg_name}
-%{_libdir}/%{pkg_name}/.eclipseproduct
-%config %{_libdir}/%{pkg_name}/eclipse.ini
+%{_bindir}/eclipse
+%{_libdir}/eclipse/.eclipseproduct
+%config %{_libdir}/eclipse/eclipse.ini
 %config %{_sysconfdir}/eclipse.ini
 /usr/share/applications/*
 /usr/share/pixmaps/*
 /usr/share/icons/*/*/apps/*
 %{_datadir}/appdata/eclipse.appdata.xml
-%{_libdir}/%{pkg_name}/eclipse
-%dir %{_libdir}/%{pkg_name}/configuration/
-%dir %{_libdir}/%{pkg_name}/configuration/org.eclipse.equinox.simpleconfigurator/
-%{_libdir}/%{pkg_name}/configuration/config.ini
-%{_libdir}/%{pkg_name}/configuration/org.eclipse.equinox.simpleconfigurator/bundles.info
-%{_libdir}/%{pkg_name}/features/org.eclipse.platform_*
-%{_libdir}/%{pkg_name}/features/org.eclipse.e4.rcp_*
-%{_libdir}/%{pkg_name}/features/org.eclipse.rcp_*
-%{_libdir}/%{pkg_name}/features/org.eclipse.rcp.configuration_*
-%{_libdir}/%{pkg_name}/plugins/com.ibm.icu_*
-%{_libdir}/%{pkg_name}/plugins/com.jcraft.jsch_*
-%{_libdir}/%{pkg_name}/plugins/javax.servlet-api_*
-%{_libdir}/%{pkg_name}/plugins/javax.servlet.jsp_*
-%{_libdir}/%{pkg_name}/plugins/javax.xml_*
-%{_libdir}/%{pkg_name}/plugins/com.sun.el.javax.el_*
-%{_libdir}/%{pkg_name}/plugins/javax.el*
+%{_libdir}/eclipse/eclipse
+%dir %{_libdir}/eclipse/configuration/
+%dir %{_libdir}/eclipse/configuration/org.eclipse.equinox.simpleconfigurator/
+%{_libdir}/eclipse/configuration/config.ini
+%{_libdir}/eclipse/configuration/org.eclipse.equinox.simpleconfigurator/bundles.info
+%{_libdir}/eclipse/features/org.eclipse.platform_*
+%{_libdir}/eclipse/features/org.eclipse.e4.rcp_*
+%{_libdir}/eclipse/features/org.eclipse.rcp_*
+%{_libdir}/eclipse/features/org.eclipse.rcp.configuration_*
+%{_libdir}/eclipse/plugins/com.ibm.icu_*
+%{_libdir}/eclipse/plugins/com.jcraft.jsch_*
+%{_libdir}/eclipse/plugins/javax.servlet-api_*
+%{_libdir}/eclipse/plugins/javax.servlet.jsp_*
+%{_libdir}/eclipse/plugins/javax.xml_*
+%{_libdir}/eclipse/plugins/com.sun.el.javax.el_*
+%{_libdir}/eclipse/plugins/javax.el*
 %{_libdir}/%{pkg_name}/plugins/javax.inject_*.jar
 %{_libdir}/%{pkg_name}/plugins/org.apache.ant_*
 %{_libdir}/%{pkg_name}/plugins/org.apache.batik.css_*
