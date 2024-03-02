@@ -26,7 +26,7 @@ Release:        3%{?dist}
 Summary:        Java command line arguments parser
 License:        MIT
 URL:            http://args4j.kohsuke.org/
-Source0:        https://github.com/kohsuke/args4j/archive/%args4j-site-%{version}.tar.gz
+Source0:        https://github.com/kohsuke/args4j/archive/args4j-site-%{version}.tar.gz
 
 BuildArch:      noarch
 
