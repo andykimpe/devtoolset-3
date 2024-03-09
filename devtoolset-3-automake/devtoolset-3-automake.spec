@@ -38,7 +38,7 @@ URL:        http://sources.redhat.com/automake
 #Requires:   %{?scl_prefix}autoconf >= 2.62
 Requires:   autoconf >= 2.62
 #Buildrequires:  %{?scl_prefix}autoconf >= 2.62
-Buildrequires:  autoconf >= 2.62
+Buildrequires:  autoconf >= 2.62 perl perl-devel
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 BuildArch:  noarch
