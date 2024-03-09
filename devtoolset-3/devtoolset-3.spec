@@ -24,7 +24,7 @@
 Summary: Package that installs %scl
 Name: %scl_name
 Version: 3.1
-Release: 16%{?dist}
+Release: 17%{?dist}
 License: GPLv2+
 Group: Applications/File
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -33,11 +33,14 @@ Source0: https://github.com/sclorg/rhscl-dockerfiles/archive/%{dfcommit}/rhscl-d
 #Source0: https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3/rhscl-dockerfiles-e90f5f98179410b7262098e4a016aa26dba598af.tar.gz
 
 # The base package must require everything in the collection
-Requires: %{scl_prefix}toolchain %{scl_prefix}ide %{scl_prefix}perftools
+#Requires: %{scl_prefix}toolchain %{scl_prefix}ide %{scl_prefix}perftools
+Requires: %{scl_prefix}toolchain
 Obsoletes: %{name} < %{version}-%{release}
 
 BuildRequires: scl-utils-build
 BuildRequires: iso-codes
+AutoReqProv: no
+AutoReq: no
 
 %description
 This is the main package for %scl Software Collection.
