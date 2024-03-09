@@ -1,5 +1,5 @@
 %{?scl:%scl_package eclipse-mylyn}
-%{!?scl:%global pkg_name mylyn}
+%{!?scl:%global pkg_name eclipse-mylyn}
 
 %if 0%{?fedora} || 0%{?rhel} >= 7
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
