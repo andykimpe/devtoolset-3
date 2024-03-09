@@ -1,5 +1,5 @@
 %{?scl:%scl_package zlib}
-%{!?scl:%global pkg_name %{name}}
+%{!?scl:%global pkg_name zlib}
 %if 0%{?fedora} || 0%{?rhel} >= 7
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
 %else
@@ -21,7 +21,7 @@
 Summary: The zlib compression and decompression library
 Name: devtoolset-3-zlib
 Version: 1.2.3
-Release: 29%{?dist}
+Release: 30%{?dist}
 Group: System Environment/Libraries
 Source: https://www.zlib.net/fossils/zlib-1.2.3.tar.gz
 Source1: zlib.pc.in
@@ -39,7 +39,8 @@ License: zlib and Boost
 BuildRoot: %{_tmppath}/%{pkg_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 %{?scl:Requires: %{scl}-runtime}
 %{?scl:BuildRequires: %{scl}-runtime}
-BuildRequires: %{?scl_prefix}automake, %{?scl_prefix}autoconf, %{?scl_prefix}libtool
+#BuildRequires: %{?scl_prefix}automake, %{?scl_prefix}autoconf, %{?scl_prefix}libtool
+BuildRequires: automake, autoconf, libtool
 
 
 %description
