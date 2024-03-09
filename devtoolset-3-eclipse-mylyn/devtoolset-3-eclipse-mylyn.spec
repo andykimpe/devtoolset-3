@@ -1,6 +1,24 @@
 %{?scl:%scl_package eclipse-mylyn}
 %{!?scl:%global pkg_name mylyn}
 
+%if 0%{?fedora} || 0%{?rhel} >= 7
+%global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
+%else
+%global brp_python_hardlink /usr/lib/rpm/redhat/brp-python-hardlink
+%endif
+%if  0%{?rhel} == 6
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump}
+%else
+%global __os_install_post /usr/lib/rpm/brp-compress \
+  %{!?__debug_package:/usr/lib/rpm/brp-strip %{__strip}} \
+  /usr/lib/rpm/brp-strip-static-archive %{__strip} \
+  /usr/lib/rpm/brp-strip-comment-note %{__strip} %{__objdump} \
+  %{brp_python_hardlink}
+%endif
+
 %global install_loc         %{_datadir}/eclipse/dropins
 %global tag R_3_14_2
 %global incubator_tag e963896478edf4fb7b4474895b15c6359aaa9a17
