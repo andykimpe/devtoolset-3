@@ -20,10 +20,10 @@
 
 %define api_version 1.11
 # Kludge to remove bogus Automake perl dependencies and provides
-%global reqfilt /bin/sh -c "%{__perl_requires} | grep -Fv 'perl(Automake::'"
-%define __perl_requires %{reqfilt}
-%global provfilt /bin/sh -c "%{__perl_provides} | grep -Fv 'perl(Automake::'"
-%define __perl_provides %{provfilt}
+###%#global reqfilt /bin/sh -c "###%#{__perl_requires} | grep -Fv 'perl(Automake::'"
+###%#define __perl_requires ###%#{reqfilt}
+###%#global provfilt /bin/sh -c "###%#{__perl_provides} | grep -Fv 'perl(Automake::'"
+###%#define __perl_provides ###%#{provfilt}
 
 Summary:    A GNU tool for automatically creating Makefiles
 Name:       devtoolset-3-automake
