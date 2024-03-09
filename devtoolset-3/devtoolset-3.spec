@@ -24,7 +24,7 @@
 Summary: Package that installs %scl
 Name: %scl_name
 Version: 3.1
-Release: 15%{?dist}
+Release: 16%{?dist}
 License: GPLv2+
 Group: Applications/File
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -47,9 +47,9 @@ Summary: Package that handles %scl Software Collection.
 Group: Applications/File
 Requires: scl-utils >= 20120927-11
 Obsoletes: %{name}-runtime < %{version}-%{release}
-Requires(post): libselinux policycoreutils-python
-Requires(postun): libselinux policycoreutils-python
-Requires(preun): libselinux policycoreutils-python
+Requires(post): libselinux
+Requires(postun): libselinux
+Requires(preun): libselinux
 
 %description runtime
 Package shipping essential scripts to work with %scl Software Collection.
