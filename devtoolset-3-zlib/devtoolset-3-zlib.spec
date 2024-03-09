@@ -165,14 +165,14 @@ set -ex
 %{?scl:EOF}
 
 
-%post -n minizip
+%post -n %{?scl_prefix}minizip
 %{?scl:scl enable %{scl} - << \EOF}
 set -ex
 /sbin/ldconfig
 %{?scl:EOF}
 
 
-%postun -n minizip
+%postun -n %{?scl_prefix}minizip
 %{?scl:scl enable %{scl} - << \EOF}
 set -ex
 /sbin/ldconfig
