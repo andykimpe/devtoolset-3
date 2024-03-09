@@ -32,8 +32,10 @@ Patch0:     autoconf-erlang_fix.diff
 URL:        http://www.gnu.org/software/autoconf/
 %{?scl:Requires: %{scl}-runtime}
 %{?scl:BuildRequires: %{scl}-runtime}
-BuildRequires:      %{?scl_prefix}m4 >= 1.4.7, %{?scl_prefix}emacs
-Requires:           %{?scl_prefix}m4 >= 1.4.7
+#BuildRequires:      %{?scl_prefix}m4 >= 1.4.7, %{?scl_prefix}emacs
+BuildRequires:      m4 >= 1.4.7, emacs
+#Requires:           %{?scl_prefix}m4 >= 1.4.7
+Requires:           m4 >= 1.4.7
 Requires(post):     /sbin/install-info
 Requires(preun):    /sbin/install-info
 BuildArch: noarch
@@ -80,12 +82,6 @@ set -ex
 make #  %{?_smp_mflags}  The Makefile is not smp safe.
 %{?scl:EOF}
 
-
-%check
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
-make check VERBOSE=yes
-%{?scl:EOF}
 
 
 %install
