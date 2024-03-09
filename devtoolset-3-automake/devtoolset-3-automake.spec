@@ -126,6 +126,7 @@ fi
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS README THANKS NEWS
+%{_datadir}/doc/automake-1.11.1/amhello-1.0.tar.gz
 %{_bindir}/*
 %{_infodir}/*.info*
 %{_datadir}/automake-%{api_version}
