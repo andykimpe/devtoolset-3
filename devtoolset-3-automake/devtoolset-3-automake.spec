@@ -35,8 +35,10 @@ Source:     http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.bz2
 Patch0:     automake-1.11.1-novala.patch
 Patch1:     automake-1.11.1-CVE-2012-3386.patch
 URL:        http://sources.redhat.com/automake
-Requires:   %{?scl_prefix}autoconf >= 2.62
-Buildrequires:  %{?scl_prefix}autoconf >= 2.62
+#Requires:   %{?scl_prefix}autoconf >= 2.62
+Requires:   autoconf >= 2.62
+#Buildrequires:  %{?scl_prefix}autoconf >= 2.62
+Buildrequires:  autoconf >= 2.62
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 BuildArch:  noarch
