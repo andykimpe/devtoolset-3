@@ -28,7 +28,7 @@
 Summary:    A GNU tool for automatically creating Makefiles
 Name:       devtoolset-3-automake
 Version:    %{api_version}.1
-Release:    4%{?dist}
+Release:    5%{?dist}
 License:    GPLv2+ and GFDL
 Group:      Development/Tools
 Source:     http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.bz2
