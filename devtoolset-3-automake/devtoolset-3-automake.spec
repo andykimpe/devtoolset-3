@@ -50,7 +50,7 @@ Buildroot:  %{_tmppath}/%{pkg_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 #BuildRequires: %{?scl_prefix}libtool %{?scl_prefix}gettext-devel %{?scl_prefix}flex %{?scl_prefix}bison %{?scl_prefix}texinfo-tex %{?scl_prefix}texlive-dvips
 BuildRequires: libtool gettext-devel flex bison texinfo-tex texlive-dvips
 #BuildRequires: %{?scl_prefix}gcc-java %{?scl_prefix}gcc-gfortran %{?_scl_root}/usr/bin/g77
-BuildRequires: gcc-java gcc-gfortran /usr/bin/g77
+#BuildRequires: gcc-java gcc-gfortran /usr/bin/g77
 #BuildRequires: %{?scl_prefix}dejagnu %{?scl_prefix}expect %{?scl_prefix}emacs %{?scl_prefix}imake %{?scl_prefix}python-docutils
 BuildRequires: dejagnu expect emacs imake python-docutils
 
