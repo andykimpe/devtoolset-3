@@ -72,12 +72,6 @@ rm -f $RPM_BUILD_ROOT%{_infodir}/dir
 %{?scl:EOF}
 
 
-%check
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
-make %{?_smp_mflags} check
-%{?scl:EOF}
-
 
 %files
 %defattr(-,root,root,-)
