@@ -21,7 +21,7 @@
 Summary:    A GNU tool for automatically configuring source code
 Name:       devtoolset-3-autoconf
 Version:    2.63
-Release:    5.1%{?dist}
+Release:    5.2%{?dist}
 License:    GPLv3+ and GFDL
 Group:      Development/Tools
 Source:     http://ftp.gnu.org/gnu/autoconf/autoconf-%{version}.tar.lzma
@@ -32,10 +32,8 @@ Patch0:     autoconf-erlang_fix.diff
 URL:        http://www.gnu.org/software/autoconf/
 %{?scl:Requires: %{scl}-runtime}
 %{?scl:BuildRequires: %{scl}-runtime}
-#BuildRequires:      %{?scl_prefix}m4 >= 1.4.7, %{?scl_prefix}emacs
-BuildRequires:      m4 >= 1.4.7, emacs
-#Requires:           %{?scl_prefix}m4 >= 1.4.7
-Requires:           m4 >= 1.4.7
+BuildRequires:      %{?scl_prefix}m4 >= 1.4.7, %{?scl_prefix}emacs
+Requires:           %{?scl_prefix}m4 >= 1.4.7
 Requires(post):     /sbin/install-info
 Requires(preun):    /sbin/install-info
 BuildArch: noarch
