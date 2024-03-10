@@ -8,7 +8,7 @@
 # wget https://github.com/andykimpe/devtoolset-3/raw/master/devtoolset-3-libtool/copr-Custom.sh -O copr-Custom.sh
 # bash copr-Custom.sh
 # rm -f copr-Custom.sh
-wget http://archive.kernel.org/centos-vault/centos/6/os/Source/SPackages/automake-1.11.1-4.el6.src.rpm
+wget http://archive.kernel.org/centos-vault/centos/6/os/Source/SPackages/libtool-2.2.6-15.5.el6.src.rpm
 rpm2cpio *.src.rpm | cpio -idmv
 rm -f *.src.rpm
 rm -rf *.spec
