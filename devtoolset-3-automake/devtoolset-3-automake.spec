@@ -1,5 +1,6 @@
 %{?scl:%scl_package automake}
-%{!?scl:%global pkg_name %{name}}
+%{!?scl:%global pkg_name automake}
+
 %if 0%{?fedora} || 0%{?rhel} >= 7
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
 %else
@@ -28,7 +29,7 @@
 Summary:    A GNU tool for automatically creating Makefiles
 Name:       devtoolset-3-automake
 Version:    %{api_version}.1
-Release:    5%{?dist}
+Release:    5.2%{?dist}
 License:    GPLv2+ and GFDL
 Group:      Development/Tools
 Source:     http://ftp.gnu.org/gnu/automake/automake-%{version}.tar.bz2
@@ -37,8 +38,8 @@ Patch1:     automake-1.11.1-CVE-2012-3386.patch
 URL:        http://sources.redhat.com/automake
 #Requires:   %{?scl_prefix}autoconf >= 2.62
 Requires:   autoconf >= 2.62
-#Buildrequires:  %{?scl_prefix}autoconf >= 2.62
-Buildrequires:  autoconf >= 2.62 perl perl-devel
+Buildrequires:  %{?scl_prefix}autoconf >= 2.62
+#Buildrequires:  autoconf >= 2.62 perl perl-devel
 Requires(post): /sbin/install-info
 Requires(preun): /sbin/install-info
 BuildArch:  noarch
