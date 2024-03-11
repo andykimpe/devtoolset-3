@@ -328,6 +328,7 @@ BuildRequires: systemtap-sdt-devel
 # will be compatible with egcs 1.x.y
 #BuildRequires: %{?scl_prefix}gcc >= 3.2
 BuildRequires: gcc >= 3.2
+BuildRequires: kernel-headers glibc-headers glibc-devel
 %define enablekernel 2.6.18
 %ifarch i386
 %define nptl_target_cpu i486
