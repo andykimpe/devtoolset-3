@@ -20,7 +20,7 @@
 
 %define glibcsrcdir glibc-2.12-2-gc4ccff1
 %define glibcversion 2.12
-%define glibcrelease 1.212%{?dist}
+%define glibcrelease 1.213%{?dist}
 %define run_glibc_tests 1
 %define auxarches athlon sparcv9v sparc64v alphaev6
 %define xenarches i686 athlon
