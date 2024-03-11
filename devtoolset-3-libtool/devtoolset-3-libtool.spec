@@ -22,7 +22,7 @@
 Summary: The GNU Portable Library Tool
 Name:    devtoolset-3-libtool
 Version: 2.2.6
-Release: 15.5%{?dist}
+Release: 15.6%{?dist}
 License: GPLv2+ and LGPLv2+ and GFDL
 Group:   Development/Tools
 Source:  http://ftp.gnu.org/gnu/libtool/libtool-%{version}b.tar.lzma
@@ -186,6 +186,8 @@ set -ex
 %doc AUTHORS COPYING NEWS README THANKS TODO ChangeLog*
 #%{_infodir}/libtool.info*.gz
 /opt/devtoolset-3/root/usr/share/info/libtool.info
+/opt/devtoolset-3/root/usr/share/info/libtool.info-1
+/opt/devtoolset-3/root/usr/share/info/libtool.info-2
 %{_bindir}/libtool
 %{_bindir}/libtoolize
 %{_datadir}/aclocal/*.m4
