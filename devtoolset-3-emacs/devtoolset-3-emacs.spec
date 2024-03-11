@@ -26,7 +26,7 @@ Summary: GNU Emacs text editor
 Name: devtoolset-3-emacs
 Epoch: 1
 Version: 23.1
-Release: 30%{?dist}
+Release: 31%{?dist}
 License: GPLv3+
 URL: http://www.gnu.org/software/emacs/
 Group: Applications/Editors
@@ -154,7 +154,7 @@ Requires(preun): chkconfig, texinfo, dev
 #Requires(posttrans): chkconfig
 Requires(posttrans): chkconfig
 
-Requires(post): textinfo, dev
+Requires(post): texinfo, dev
 Obsoletes: %{?scl_prefix}emacs-leim
 
 
