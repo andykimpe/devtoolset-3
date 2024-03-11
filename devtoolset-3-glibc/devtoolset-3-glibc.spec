@@ -20,7 +20,7 @@
 
 %define glibcsrcdir glibc-2.12-2-gc4ccff1
 %define glibcversion 2.12
-%define glibcrelease 1.215%{?dist}
+%define glibcrelease 1.216%{?dist}
 %define run_glibc_tests 1
 %define auxarches athlon sparcv9v sparc64v alphaev6
 %define xenarches i686 athlon
@@ -328,7 +328,7 @@ BuildRequires: systemtap-sdt-devel
 # will be compatible with egcs 1.x.y
 #BuildRequires: %{?scl_prefix}gcc >= 3.2
 BuildRequires: gcc >= 3.2
-BuildRequires: kernel-headers glibc-headers glibc-devel
+#BuildRequires: kernel-headers glibc-headers glibc-devel
 %define enablekernel 2.6.18
 %ifarch i386
 %define nptl_target_cpu i486
@@ -398,8 +398,8 @@ Install glibc-xen if you might run your system under the Xen hypervisor.
 Summary: Object files for development using standard C libraries.
 Group: Development/Libraries
 Requires(pre): /sbin/install-info
-Requires(pre): %{?scl_prefix}%{pkg_name}-headers
-Requires: %{?scl_prefix}%{pkg_name}-headers = %{version}-%{release}
+#Requires(pre): %{?scl_prefix}%{pkg_name}-headers
+#Requires: %{?scl_prefix}%{pkg_name}-headers = %{version}-%{release}
 Requires: %{?scl_prefix}%{pkg_name} = %{version}-%{release}
 
 
@@ -427,34 +427,34 @@ for -static linking.  You don't need these, unless you link statically,
 which is highly discouraged.
 
 
-%package headers
-Summary: Header files for development using standard C libraries.
-Group: Development/Libraries
-Provides: %{?scl_prefix}%{pkg_name}-headers(%{_target_cpu})
-%ifarch x86_64
-# If both -m32 and -m64 is to be supported on AMD64, x86_64 glibc-headers
-# have to be installed, not i586 ones.
-#Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i586)
-#Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i686)
-%endif
-#Requires(pre): %{?scl_prefix}kernel-headers
-Requires(pre): kernel-headers
-#Requires: %{?scl_prefix}kernel-headers >= 2.2.1, %{?scl_prefix}%{pkg_name} = %{version}-%{release}
-Requires: kernel-headers >= 2.2.1, %{?scl_prefix}%{pkg_name} = %{version}-%{release}
-#BuildRequires: %{?scl_prefix}kernel-headers >= 2.6.22
-BuildRequires: kernel-headers >= 2.6.22
+#%#package headers
+#Summary: Header files for development using standard C libraries.
+#Group: Development/Libraries
+#Provides: %{?scl_prefix}%{pkg_name}-headers(%{_target_cpu})
+#%#ifarch x86_64
+## If both -m32 and -m64 is to be supported on AMD64, x86_64 glibc-headers
+## have to be installed, not i586 ones.
+##Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i586)
+##Obsoletes: %{?scl_prefix}%{pkg_name}-headers(i686)
+#%endif
+##Requires(pre): %{?scl_prefix}kernel-headers
+#Requires(pre): kernel-headers
+##Requires: %{?scl_prefix}kernel-headers >= 2.2.1, %{?scl_prefix}%{pkg_name} = %{version}-%{release}
+#Requires: kernel-headers >= 2.2.1, %{?scl_prefix}%{pkg_name} = %{version}-%{release}
+##BuildRequires: %{?scl_prefix}kernel-headers >= 2.6.22
+#BuildRequires: kernel-headers >= 2.6.22
 
 
-%description headers
-The glibc-headers package contains the header files necessary
-for developing programs which use the standard C libraries (which are
-used by nearly all programs).  If you are developing programs which
-will use the standard C libraries, your system needs to have these
-standard header files available in order to create the
-executables.
-
-Install glibc-headers if you are going to develop programs which will
-use the standard C libraries.
+#%description headers
+#The glibc-headers package contains the header files necessary
+#for developing programs which use the standard C libraries (which are
+#used by nearly all programs).  If you are developing programs which
+#will use the standard C libraries, your system needs to have these
+#standard header files available in order to create the
+#executables.
+#
+#Install glibc-headers if you are going to develop programs which will
+#use the standard C libraries.
 
 
 %package common
@@ -911,7 +911,7 @@ build_CFLAGS="$BuildFlags -g -O3 $*"
  ../configure CC="$GCC" CXX="$GXX" CFLAGS="$build_CFLAGS" \
 	--prefix=%{_prefix} \
 	--enable-add-ons=nptl$AddOns --without-cvs $EnableKernel \
-	--with-headers=/usr/include --enable-bind-now \
+	--enable-bind-now \
 	--with-tls --with-__thread --build %{nptl_target_cpu}-redhat-linux \
 	--host %{nptl_target_cpu}-redhat-linux \
 %ifarch %{multiarcharches}
@@ -1429,14 +1429,14 @@ set -ex
 %{?scl:EOF}
 
 
-%pre headers
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
+#%#pre headers
+#%#{?scl:scl enable %{scl} - << \EOF}
+#set -ex
 # this used to be a link and it is causing nightmares now
-if [ -L %{_prefix}/include/scsi ] ; then
-  rm -f %{_prefix}/include/scsi
-fi
-%{?scl:EOF}
+#if [ -L %{_prefix}/include/scsi ] ; then
+#  rm -f %{_prefix}/include/scsi
+#fi
+#%#{?scl:EOF}
 
 
 %preun devel
@@ -1591,8 +1591,8 @@ rm -f *.filelist*
 %defattr(-,root,root)
 
 
-%files -f headers.filelist headers
-%defattr(-,root,root)
+#%#files -f headers.filelist headers
+#%#defattr(-,root,root)
 
 
 %files -f utils.filelist utils
