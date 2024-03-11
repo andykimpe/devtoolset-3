@@ -20,7 +20,7 @@
 
 %define glibcsrcdir glibc-2.12-2-gc4ccff1
 %define glibcversion 2.12
-%define glibcrelease 1.213%{?dist}
+%define glibcrelease 1.214%{?dist}
 %define run_glibc_tests 1
 %define auxarches athlon sparcv9v sparc64v alphaev6
 %define xenarches i686 athlon
@@ -894,10 +894,24 @@ shift
 rm -rf $builddir
 mkdir $builddir ; cd $builddir
 build_CFLAGS="$BuildFlags -g -O3 $*"
-../configure CC="$GCC" CXX="$GXX" CFLAGS="$build_CFLAGS" \
+#../configure CC="$GCC" CXX="$GXX" CFLAGS="$build_CFLAGS" \
+#	--prefix=%{_prefix} \
+#	--enable-add-ons=nptl$AddOns --without-cvs $EnableKernel \
+#	--with-headers=%{_prefix}/include --enable-bind-now \
+#	--with-tls --with-__thread --build %{nptl_target_cpu}-redhat-linux \
+#	--host %{nptl_target_cpu}-redhat-linux \
+#%ifarch %{multiarcharches}
+#	--enable-multi-arch \
+#%endif
+#%ifarch %{systemtaparches}
+#	--enable-systemtap \
+#%endif
+#	--disable-profile --enable-experimental-malloc --enable-nss-crypt
+
+ ../configure CC="$GCC" CXX="$GXX" CFLAGS="$build_CFLAGS" \
 	--prefix=%{_prefix} \
 	--enable-add-ons=nptl$AddOns --without-cvs $EnableKernel \
-	--with-headers=%{_prefix}/include --enable-bind-now \
+	--with-headers=/usr/include --enable-bind-now \
 	--with-tls --with-__thread --build %{nptl_target_cpu}-redhat-linux \
 	--host %{nptl_target_cpu}-redhat-linux \
 %ifarch %{multiarcharches}
