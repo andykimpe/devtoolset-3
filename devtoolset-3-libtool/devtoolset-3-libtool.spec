@@ -184,7 +184,7 @@ set -ex
 %files
 %defattr(-,root,root)
 %doc AUTHORS COPYING NEWS README THANKS TODO ChangeLog*
-%{_infodir}/libtool.info*.gz
+#%{_infodir}/libtool.info*.gz
 %{_bindir}/libtool
 %{_bindir}/libtoolize
 %{_datadir}/aclocal/*.m4
