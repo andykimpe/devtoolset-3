@@ -1,5 +1,5 @@
 %{?scl:%scl_package libtool}
-%{!?scl:%global pkg_name %{name}}
+%{!?scl:%global pkg_name libtool}
 
 %if 0%{?fedora} || 0%{?rhel} >= 7
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
@@ -20,7 +20,7 @@
 %endif
 
 Summary: The GNU Portable Library Tool
-Name:    %{?scl_prefix}libtool
+Name:    devtoolset-3-libtool
 Version: 2.2.6
 Release: 15.5%{?dist}
 License: GPLv2+ and LGPLv2+ and GFDL
@@ -41,11 +41,12 @@ Requires: %{?scl_prefix}autoconf >= 2.58, %{?scl_prefix}automake >= 1.4
 #Requires: %{?scl_prefix}sed
 Requires: sed
 # make sure we can configure all supported langs
-BuildRequires: %{?scl_prefix}libstdc++-devel, %{?scl_prefix}gcc-gfortran, %{?scl_prefix}gcc-java
+#BuildRequires: %{?scl_prefix}libstdc++-devel, %{?scl_prefix}gcc-gfortran, %{?scl_prefix}gcc-java
+BuildRequires: libstdc++-devel, gcc-gfortran, gcc-java
 # /usr/bin/libtool includes paths within gcc's versioned directories
 # Libtool must be rebuilt whenever a new upstream gcc is built
-Requires: %{?scl_prefix}gcc
-#Requires: gcc
+#Requires: %{?scl_prefix}gcc
+Requires: gcc
 
 
 %description
@@ -125,14 +126,6 @@ for i in ChangeLog.1997 ChangeLog.1998 ChangeLog.1999 ChangeLog.2002; do
   iconv -f ISO-8859-1 -t UTF-8 $i > $i.tmp
   mv -f $i.tmp $i
 done
-%{?scl:EOF}
-
-
-%check
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
-#make check VERBOSE=yes > make_check.log 2>&1 || (cat make_check.log && false)
-
 %{?scl:EOF}
 
 
