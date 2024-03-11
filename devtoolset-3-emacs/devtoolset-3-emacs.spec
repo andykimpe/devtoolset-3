@@ -274,24 +274,24 @@ ${TOPDIR}/src/emacs %{bytecompargs} site-lisp/*.el
 rm etc/emacs3.py
 
 # Create pkgconfig file
-cat > emacs.pc << EOF
+cat > emacs.pc << EOG
 sitepkglispdir=%{site_lisp}
 sitestartdir=%{site_start_d}
 
 Name: emacs
 Description: GNU Emacs text editor
 Version: %{epoch}:%{version}
-EOF
+EOG
 
 # Create macros.emacs RPM macro file
-cat > macros.emacs << EOF
+cat > macros.emacs << EOH
 %%_emacs_version %{version}
 %%_emacs_ev %{?epoch:%{epoch}:}%{version}
 %%_emacs_evr %{?epoch:%{epoch}:}%{version}-%{release}
 %%_emacs_sitelispdir %{site_lisp}
 %%_emacs_sitestartdir %{site_start_d}
 %%_emacs_bytecompile /usr/bin/emacs %bytecompargs 
-EOF
+EOH
 %{?scl:EOF}
 
 
