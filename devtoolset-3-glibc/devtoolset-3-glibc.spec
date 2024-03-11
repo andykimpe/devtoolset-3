@@ -816,8 +816,8 @@ touch locale/programs/*-kw.h
 
 
 %build
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
+#%{?scl:scl enable %{scl} - << \EOF}
+#set -ex
 # Log system information
 uname -a
 cat /proc/cpuinfo
@@ -965,12 +965,12 @@ $GCC -static -L. -Os -g ../releng/glibc_post_upgrade.c -o glibc_post_upgrade.%{_
   '-DLD_SO_CONF="/etc/ld.so.conf"' \
   '-DICONVCONFIG="%{_sbindir}/iconvconfig.%{_target_cpu}"'
 cd ..
-%{?scl:EOF}
+#%{?scl:EOF}
 
 
 %install
-%{?scl:scl enable %{scl} - << \EOF}
-set -ex
+#%{?scl:scl enable %{scl} - << \EOF}
+#set -ex
 GCC=`cat Gcc`
 
 rm -rf $RPM_BUILD_ROOT
@@ -1278,16 +1278,16 @@ mkdir -p $RPM_BUILD_ROOT/lib
 ln -sf /%{_lib}/ld64.so.1 $RPM_BUILD_ROOT/lib/ld64.so.1
 %endif
 
-%if %{run_glibc_tests}
+#%if %{run_glibc_tests}
 
-PLTCMD='/^Relocation section .*\(\.rela\?\.plt\|\.rela\.IA_64\.pltoff\)/,/^$/p'
-echo ====================PLT RELOCS LD.SO================
-readelf -Wr $RPM_BUILD_ROOT/%{_lib}/ld-*.so | sed -n -e "$PLTCMD"
-echo ====================PLT RELOCS LIBC.SO==============
-readelf -Wr $RPM_BUILD_ROOT/%{_lib}/libc-*.so | sed -n -e "$PLTCMD"
-echo ====================PLT RELOCS END==================
-
-%endif
+#PLTCMD='/^Relocation section .*\(\.rela\?\.plt\|\.rela\.IA_64\.pltoff\)/,/^$/p'
+#echo ====================PLT RELOCS LD.SO================
+#readelf -Wr $RPM_BUILD_ROOT/%{_lib}/ld-*.so | sed -n -e "$PLTCMD"
+#echo ====================PLT RELOCS LIBC.SO==============
+#readelf -Wr $RPM_BUILD_ROOT/%{_lib}/libc-*.so | sed -n -e "$PLTCMD"
+#echo ====================PLT RELOCS END==================
+#
+#%endif
 
 pushd $RPM_BUILD_ROOT/usr/%{_lib}/
 $GCC -r -nostdlib -o libpthread.o -Wl,--whole-archive ./libpthread.a
@@ -1399,7 +1399,7 @@ touch $RPM_BUILD_ROOT/var/run/nscd/{socket,nscd.pid}
 
 mkdir -p $RPM_BUILD_ROOT/var/cache/ldconfig
 > $RPM_BUILD_ROOT/var/cache/ldconfig/aux-cache
-%{?scl:EOF}
+#%{?scl:EOF}
 
 
 #%post -p /usr/sbin/glibc_post_upgrade.%{_target_cpu}
