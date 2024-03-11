@@ -1,5 +1,7 @@
 %{?scl:%scl_package glibc}
-%{!?scl:%global pkg_name %{name}}
+%{!?scl:%global pkg_name glibc}
+
+
 %if 0%{?fedora} || 0%{?rhel} >= 7
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
 %else
@@ -989,10 +991,10 @@ librtso=`basename $RPM_BUILD_ROOT/%{_lib}/librt.so.*`
 rm -f $RPM_BUILD_ROOT{,%{_prefix}}/%{_lib}/librtkaio.*
 rm -f $RPM_BUILD_ROOT%{_prefix}/%{_lib}/librt.so.*
 mkdir -p $RPM_BUILD_ROOT/%{_lib}/rtkaio
-mv $RPM_BUILD_ROOT/%{_lib}/librtkaio-*.so $RPM_BUILD_ROOT/%{_lib}/rtkaio/
+#mv $RPM_BUILD_ROOT/%{_lib}/librtkaio-*.so $RPM_BUILD_ROOT/%{_lib}/rtkaio/
 rm -f $RPM_BUILD_ROOT/%{_lib}/$librtso
 ln -sf `basename $RPM_BUILD_ROOT/%{_lib}/librt-*.so` $RPM_BUILD_ROOT/%{_lib}/$librtso
-ln -sf `basename $RPM_BUILD_ROOT/%{_lib}/rtkaio/librtkaio-*.so` $RPM_BUILD_ROOT/%{_lib}/rtkaio/$librtso
+#ln -sf `basename $RPM_BUILD_ROOT/%{_lib}/rtkaio/librtkaio-*.so` $RPM_BUILD_ROOT/%{_lib}/rtkaio/$librtso
 %endif
 
 %if %{buildxen}
