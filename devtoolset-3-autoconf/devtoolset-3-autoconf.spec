@@ -1,5 +1,5 @@
 %{?scl:%scl_package autoconf}
-%{!?scl:%global pkg_name %{name}}
+%{!?scl:%global pkg_name autoconf}
 %if 0%{?fedora} || 0%{?rhel} >= 7
 %global brp_python_hardlink /usr/lib/rpm/brp-python-hardlink
 %else
@@ -122,8 +122,8 @@ fi
 # don't include standards.info, because it comes from binutils...
 %exclude %{_infodir}/standards*
 %{_datadir}/autoconf/
-%dir %{_datadir}/emacs/
-%{_datadir}/emacs/site-lisp/
+#%dir %{_datadir}/emacs/
+#%{_datadir}/emacs/site-lisp/
 %{_mandir}/man1/*
 %doc AUTHORS COPYING ChangeLog NEWS README THANKS TODO
 
