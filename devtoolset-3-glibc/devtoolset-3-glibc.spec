@@ -1081,7 +1081,7 @@ gzip -9nvf $RPM_BUILD_ROOT%{_infodir}/libc*
 
 #ln -sf libbsd-compat.a $RPM_BUILD_ROOT%{_prefix}/%{_lib}/libbsd.a
 
-install -p -m 644 releng/nsswitch.conf $RPM_BUILD_ROOT/etc/nsswitch.conf
+#install -p -m 644 releng/nsswitch.conf $RPM_BUILD_ROOT/etc/nsswitch.conf
 
 mkdir -p $RPM_BUILD_ROOT/etc/default
 install -p -m 644 nis/nss $RPM_BUILD_ROOT/etc/default/nss
